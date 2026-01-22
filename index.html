@@ -45,7 +45,7 @@
     </div>
 
     <script>
-        // --- 1. SVG 圖示庫 (用字串存儲以保持單一檔案) ---
+        // --- 1. SVG 圖示庫 ---
         const Icons = {
             ChevronRight: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>`,
             BookOpen: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
@@ -59,272 +59,165 @@
             Refresh: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>`
         };
 
-        // --- 2. 成語資料庫 ---
+        // --- 2. 成語資料庫 (擴充版) ---
+        // Mapping:
+        // Set 1: 1-2 畫
+        // Set 2: 3-4 畫
+        // Set 3: 5-6 畫
+        // Set 4: 7-8 畫
+        // Set 5: 9-10 畫
+        // Set 6: 11-12 畫
+        // Set 7: 13-14 畫
+        // Set 8: 15 畫及以上
         const idiomDatabase = [
-          // --- 第 1 組 (1-2 畫) ---
-          { 
-            id: 101, set: 1, word: "一言為定", zhuyin: "ㄧ ㄧㄢˊ ㄨㄟˊ ㄉㄧㄥˋ", 
-            meaning: "一句話說定了，不再更改。比喻說話算數，絕不反悔。", 
-            example: "我們明天去公園玩，____，誰都不許遲到。", 
-            options: ["一言為定", "三心二意", "信口開河", "一知半解"],
-            synonyms: ["一諾千金", "言而有信"],
-            antonyms: ["出爾反爾", "食言而肥", "言而無信"]
-          },
-          { 
-            id: 102, set: 1, word: "一知半解", zhuyin: "ㄧ ㄓ ㄅㄢˋ ㄐㄧㄝˇ", 
-            meaning: "形容所知不全，了解不深。", 
-            example: "這本書的內容很深奧，我讀了半天還是____。", 
-            options: ["一知半解", "博古通今", "一竅不通", "融會貫通"],
-            synonyms: ["略知皮毛", "管中窺豹"],
-            antonyms: ["融會貫通", "博古通今", "真知灼見"]
-          },
-          { 
-            id: 103, set: 1, word: "一鼓作氣", zhuyin: "ㄧ ㄍㄨˇ ㄗㄨㄛˋ ㄑㄧˋ", 
-            meaning: "比喻做事時，趁著初起的勇氣，一舉完成。", 
-            example: "大家決定____，把剩下的工作全部做完。", 
-            options: ["一鼓作氣", "半途而廢", "拖泥帶水", "猶豫不決"],
-            synonyms: ["打鐵趁熱", "勇往直前"],
-            antonyms: ["一曝十寒", "半途而廢", "垂頭喪氣"]
-          },
-          { 
-            id: 104, set: 1, word: "一諾千金", zhuyin: "ㄧ ㄋㄨㄛˋ ㄑㄧㄢ ㄐㄧㄣ", 
-            meaning: "形容承諾信用高，一旦許諾，絕不反悔。", 
-            example: "他這個人____，答應的事一定辦到。", 
-            options: ["一諾千金", "信口開河", "花言巧語", "食言而肥"],
-            synonyms: ["一言為定", "言而有信"],
-            antonyms: ["食言而肥", "空口說白話"]
-          },
-          { 
-            id: 105, set: 1, word: "十全十美", zhuyin: "ㄕˊ ㄑㄩㄢˊ ㄕˊ ㄇㄟˇ", 
-            meaning: "比喻圓滿美好，毫無缺陷。", 
-            example: "世上很難有____的事，我們盡力就好。", 
-            options: ["十全十美", "一無是處", "白璧微瑕", "美中不足"],
-            synonyms: ["盡善盡美", "無懈可擊"],
-            antonyms: ["一無是處", "漏洞百出"]
-          },
+          // --- Set 1 (1-2 畫) ---
+          { set: 1, word: "一言為定", zhuyin: "ㄧ ㄧㄢˊ ㄨㄟˊ ㄉㄧㄥˋ", meaning: "說好就算數，不反悔。", example: "我們約好明天見，____，不見不散。", synonyms: ["一諾千金", "言而有信"], antonyms: ["出爾反爾", "食言而肥"] },
+          { set: 1, word: "一事無成", zhuyin: "ㄧ ㄕˋ ㄨˊ ㄔㄥˊ", meaning: "什麼成就都沒有。", example: "如果不努力，將來可能會____。", synonyms: ["一無所成"], antonyms: ["功成名就", "大有可為"] },
+          { set: 1, word: "一知半解", zhuyin: "ㄧ ㄓ ㄅㄢˋ ㄐㄧㄝˇ", meaning: "懂一點點但不完整。", example: "對這件事我只是____，不敢亂說。", synonyms: ["略知皮毛"], antonyms: ["融會貫通", "博古通今"] },
+          { set: 1, word: "一鼓作氣", zhuyin: "ㄧ ㄍㄨˇ ㄗㄨㄛˋ ㄑㄧˋ", meaning: "趁著氣勢一次把事做好。", example: "大家決定____，把剩下的工作全部做完。", synonyms: ["打鐵趁熱"], antonyms: ["一曝十寒", "半途而廢"] },
+          { set: 1, word: "一見如故", zhuyin: "ㄧ ㄐㄧㄢˋ ㄖㄨˊ ㄍㄨˋ", meaning: "第一次見面就像老朋友。", example: "我和他雖然初次見面，卻____，聊得很開心。", synonyms: ["一見傾心"], antonyms: ["視同路人"] },
+          { set: 1, word: "一目了然", zhuyin: "ㄧ ㄇㄨˋ ㄌㄧㄠˇ ㄖㄢˊ", meaning: "一下就看得很清楚。", example: "這張圖表製作得很清楚，讓人____。", synonyms: ["一清二楚"], antonyms: ["霧裡看花"] },
+          { set: 1, word: "一舉兩得", zhuyin: "ㄧ ㄐㄩˇ ㄌㄧㄤˇ ㄉㄜˊ", meaning: "做一件事得到兩種好處。", example: "運動既能健身又能紓壓，真是____。", synonyms: ["一石二鳥", "事半功倍"], antonyms: ["徒勞無功"] },
+          { set: 1, word: "一絲不苟", zhuyin: "ㄧ ㄙ ㄅㄨˋ ㄍㄡˇ", meaning: "做事非常仔細不馬虎。", example: "他做事____，連最細微的地方都不放過。", synonyms: ["小心翼翼", "兢兢業業"], antonyms: ["粗枝大葉", "馬馬虎虎"] },
+          { set: 1, word: "九霄雲外", zhuyin: "ㄐㄧㄡˇ ㄒㄧㄠ ㄩㄣˊ ㄨㄞˋ", meaning: "把事情拋到很遠，早忘了。", example: "放假了，我把煩惱都拋到____。", synonyms: ["置之度外"], antonyms: ["銘記在心"] },
+          { set: 1, word: "人山人海", zhuyin: "ㄖㄣˊ ㄕㄢ ㄖㄣˊ ㄏㄞˇ", meaning: "人非常多，像山和海一樣。", example: "跨年晚會現場____，非常熱鬧。", synonyms: ["萬人空巷"], antonyms: ["門可羅雀", "人煙稀少"] },
+          { set: 1, word: "人心不古", zhuyin: "ㄖㄣˊ ㄒㄧㄣ ㄅㄨˋ ㄍㄨˇ", meaning: "感嘆人心不如從前純厚。", example: "現在詐騙很多，真是____。", synonyms: ["世風日下"], antonyms: ["民風淳樸"] },
+          { set: 1, word: "人仰馬翻", zhuyin: "ㄖㄣˊ ㄧㄤˇ ㄇㄚˇ ㄈㄢ", meaning: "場面混亂、大家忙亂跌倒。", example: "為了趕工，大家忙得____。", synonyms: ["手忙腳亂"], antonyms: ["井井有條"] },
+          { set: 1, word: "八面玲瓏", zhuyin: "ㄅㄚ ㄇㄧㄢˋ ㄌㄧㄥˊ ㄌㄨㄥˊ", meaning: "做事圓滑、各方面都顧到。", example: "他待人處事____，大家都喜歡他。", synonyms: ["面面俱到"], antonyms: ["剛愎自用"] },
+          { set: 1, word: "力不從心", zhuyin: "ㄌㄧˋ ㄅㄨˋ ㄘㄨㄥˊ ㄒㄧㄣ", meaning: "想做但能力跟不上。", example: "我想幫忙，但實在是____。", synonyms: ["無能為力"], antonyms: ["得心應手", "游刃有餘"] },
+          { set: 1, word: "入木三分", zhuyin: "ㄖㄨˋ ㄇㄨˋ ㄙㄢ ㄈㄣ", meaning: "形容深刻有力(多指文章/觀察)。", example: "這篇評論分析得____，令人佩服。", synonyms: ["鞭辟入裡"], antonyms: ["不痛不癢"] },
+          { set: 1, word: "二話不說", zhuyin: "ㄦˋ ㄏㄨㄚˋ ㄅㄨˋ ㄕㄨㄛ", meaning: "不多說，立刻去做。", example: "聽到朋友有難，他____立刻趕去幫忙。", synonyms: ["毫不猶豫"], antonyms: ["猶豫不決"] },
 
-          // --- 第 2 組 (3-4 畫) ---
-          { 
-            id: 201, set: 2, word: "亡羊補牢", zhuyin: "ㄨㄤˊ ㄧㄤˊ ㄅㄨˇ ㄌㄠˊ", 
-            meaning: "比喻犯錯後及時更正，尚能補救。", 
-            example: "現在開始複習功課還來得及，____，猶未晚也。", 
-            options: ["亡羊補牢", "執迷不悟", "將錯就錯", "自暴自棄"],
-            synonyms: ["知錯能改"],
-            antonyms: ["執迷不悟", "將錯就錯"]
-          },
-          { 
-            id: 202, set: 2, word: "三心二意", zhuyin: "ㄙㄢ ㄒㄧㄣ ㄦˋ ㄧˋ", 
-            meaning: "形容猶豫不決，意志不堅定。", 
-            example: "做決定要果斷，不要____，否則什麼事都做不好。", 
-            options: ["三心二意", "一心一意", "聚精會神", "專心致志"],
-            synonyms: ["猶豫不決", "心猿意馬"],
-            antonyms: ["一心一意", "專心致志", "聚精會神"]
-          },
-          { 
-            id: 203, set: 2, word: "不毛之地", zhuyin: "ㄅㄨˋ ㄇㄠˊ ㄓ ㄉㄧˋ", 
-            meaning: "形容荒涼貧瘠，不長草木的地方。", 
-            example: "這裡曾經是____，經過開發後變成了繁榮的城市。", 
-            options: ["不毛之地", "魚米之鄉", "世外桃源", "人傑地靈"],
-            synonyms: ["荒山野嶺", "寸草不生"],
-            antonyms: ["魚米之鄉", "沃野千里"]
-          },
-          { 
-            id: 204, set: 2, word: "引狼入室", zhuyin: "ㄧㄣˇ ㄌㄤˊ ㄖㄨˋ ㄕˋ", 
-            meaning: "比喻把壞人或敵人招引進來，自招禍患。", 
-            example: "你隨便讓陌生人進家門，簡直是____。", 
-            options: ["引狼入室", "拒人千里", "開門揖盜", "防微杜漸"],
-            synonyms: ["開門揖盜", "認賊作父"],
-            antonyms: ["拒人於千里之外"]
-          },
-          { 
-            id: 205, set: 2, word: "五花八門", zhuyin: "ㄨˇ ㄏㄨㄚ ㄅㄚ ㄇㄣˊ", 
-            meaning: "比喻花樣繁多，變化多端。", 
-            example: "夜市裡賣的東西____，讓人看得眼花撩亂。", 
-            options: ["五花八門", "千篇一律", "一成不變", "獨一無二"],
-            synonyms: ["包羅萬象", "琳瑯滿目"],
-            antonyms: ["千篇一律", "一成不變"]
-          },
+          // --- Set 2 (3-4 畫) ---
+          { set: 2, word: "大公無私", zhuyin: "ㄉㄚˋ ㄍㄨㄥ ㄨˊ ㄙ", meaning: "做事公正，不為私利。", example: "班長處理事情____，大家都服氣。", synonyms: ["鐵面無私"], antonyms: ["假公濟私", "營私舞弊"] },
+          { set: 2, word: "大器晚成", zhuyin: "ㄉㄚˋ ㄑㄧˋ ㄨㄢˇ ㄔㄥˊ", meaning: "有大才能的人較晚成功。", example: "別氣餒，你這是____，將來一定有成就。", synonyms: ["後來居上"], antonyms: ["小時了了"] },
+          { set: 2, word: "大驚小怪", zhuyin: "ㄉㄚˋ ㄐㄧㄥ ㄒㄧㄠˇ ㄍㄨㄞˋ", meaning: "把小事看得太嚴重。", example: "這只是小感冒，別____。", synonyms: ["小題大作"], antonyms: ["處變不驚"] },
+          { set: 2, word: "小心翼翼", zhuyin: "ㄒㄧㄠˇ ㄒㄧㄣ ㄧˋ ㄧˋ", meaning: "非常小心謹慎。", example: "他____地捧著剛做好的蛋糕。", synonyms: ["如履薄冰", "謹小慎微"], antonyms: ["粗心大意"] },
+          { set: 2, word: "山高水長", zhuyin: "ㄕㄢ ㄍㄠ ㄕㄨㄟˇ ㄔㄤˊ", meaning: "比喻恩德深厚、情誼長久。", example: "老師的恩情____，我們永遠不會忘記。", synonyms: ["天長地久"], antonyms: [] },
+          { set: 2, word: "口若懸河", zhuyin: "ㄎㄡˇ ㄖㄨㄛˋ ㄒㄩㄢˊ ㄏㄜˊ", meaning: "說話滔滔不絕。", example: "他一談起電影就____，停不下來。", synonyms: ["滔滔不絕"], antonyms: ["啞口無言", "沉默寡言"] },
+          { set: 2, word: "千依百順", zhuyin: "ㄑㄧㄢ ㄧ ㄅㄞˇ ㄕㄨㄣˋ", meaning: "非常順從、不違背。", example: "他對父母____，是個孝順的孩子。", synonyms: ["百依百順"], antonyms: ["桀驁不馴"] },
+          { set: 2, word: "三心二意", zhuyin: "ㄙㄢ ㄒㄧㄣ ㄦˋ ㄧˋ", meaning: "拿不定主意、不專心。", example: "做決定要果斷，不要____。", synonyms: ["猶豫不決"], antonyms: ["一心一意"] },
+          { set: 2, word: "天造地設", zhuyin: "ㄊㄧㄢ ㄗㄠˋ ㄉㄧˋ ㄕㄜˋ", meaning: "天然形成，很合適。", example: "這裡風景優美，簡直是____的度假勝地。", synonyms: ["鬼斧神工"], antonyms: [] },
+          { set: 2, word: "日新月異", zhuyin: "ㄖˋ ㄒㄧㄣ ㄩㄝˋ ㄧˋ", meaning: "每天都有新變化，進步很快。", example: "科技發展____，我們要不斷學習。", synonyms: ["一日千里"], antonyms: ["一成不變", "故步自封"] },
+          { set: 2, word: "心曠神怡", zhuyin: "ㄒㄧㄣ ㄎㄨㄤˋ ㄕㄣˊ ㄧˊ", meaning: "心情開朗、精神愉快。", example: "走在森林步道，讓人感到____。", synonyms: ["心花怒放"], antonyms: ["心煩意亂"] },
+          { set: 2, word: "手不釋卷", zhuyin: "ㄕㄡˇ ㄅㄨˋ ㄕˋ ㄐㄩㄢˋ", meaning: "很愛讀書，書不離手。", example: "他從小就____，學識非常豐富。", synonyms: ["好學不倦"], antonyms: ["不學無術"] },
+          { set: 2, word: "水到渠成", zhuyin: "ㄕㄨㄟˇ ㄉㄠˋ ㄑㄩˊ ㄔㄥˊ", meaning: "條件具備，自然成功。", example: "只要平時努力，考試成績自然____。", synonyms: ["順理成章"], antonyms: ["拔苗助長"] },
+          { set: 2, word: "少見多怪", zhuyin: "ㄕㄠˇ ㄐㄧㄢˋ ㄉㄨㄛ ㄍㄨㄞˋ", meaning: "見識少才覺得稀奇。", example: "這只是普通現象，你別____了。", synonyms: ["大驚小怪"], antonyms: ["見多識廣"] },
+          { set: 2, word: "文思泉湧", zhuyin: "ㄨㄣˊ ㄙ ㄑㄩㄢˊ ㄩㄥˇ", meaning: "寫作靈感像泉水一樣湧出。", example: "作家今天____，一下午就寫了三篇文章。", synonyms: ["才思敏捷"], antonyms: ["江郎才盡"] },
+          { set: 2, word: "不約而同", zhuyin: "ㄅㄨˋ ㄩㄝ ㄦˊ ㄊㄨㄥˊ", meaning: "沒商量卻做出同樣的事。", example: "大家____地為精彩的表演鼓掌。", synonyms: ["不謀而合"], antonyms: ["各持己見"] },
 
-          // --- 第 3 組 (5-6 畫) ---
-          { 
-            id: 301, set: 3, word: "正大光明", zhuyin: "ㄓㄥˋ ㄉㄚˋ ㄍㄨㄤ ㄇㄧㄥˊ", 
-            meaning: "形容言行正直坦蕩，公正無私。", 
-            example: "我們做事____，不怕別人閒言閒語。", 
-            options: ["正大光明", "鬼鬼祟祟", "偷偷摸摸", "暗箭傷人"],
-            synonyms: ["光明磊落", "坦坦蕩蕩"],
-            antonyms: ["鬼鬼祟祟", "心懷鬼胎"]
-          },
-          { 
-            id: 302, set: 3, word: "生龍活虎", zhuyin: "ㄕㄥ ㄌㄨㄥˊ ㄏㄨㄛˊ ㄏㄨˇ", 
-            meaning: "形容活潑矯健，生氣勃勃。", 
-            example: "休息過後，他又是一條____的好漢。", 
-            options: ["生龍活虎", "死氣沉沉", "半死不活", "奄奄一息"],
-            synonyms: ["精神奕奕", "龍精虎猛"],
-            antonyms: ["死氣沉沉", "萎靡不振", "垂頭喪氣"]
-          },
-          { 
-            id: 303, set: 3, word: "自相矛盾", zhuyin: "ㄗˋ ㄒㄧㄤ ㄇㄠˊ ㄉㄨㄣˋ", 
-            meaning: "比喻言語或行事前後不一致。", 
-            example: "你剛才說要去，現在又說不去，這不是____嗎？", 
-            options: ["自相矛盾", "言行一致", "表裡如一", "心口如一"],
-            synonyms: ["前後不一", "漏洞百出"],
-            antonyms: ["言行一致", "表裡如一"]
-          },
-          { 
-            id: 304, set: 3, word: "因材施教", zhuyin: "ㄧㄣ ㄘㄞˊ ㄕ ㄐㄧㄠˋ", 
-            meaning: "依據學生的資質、才幹，給予適當的教育。", 
-            example: "老師懂得____，讓每個學生都能發揮專長。", 
-            options: ["因材施教", "一視同仁", "拔苗助長", "對牛彈琴"],
-            synonyms: ["量體裁衣"],
-            antonyms: ["一視同仁", "千篇一律"]
-          },
-          { 
-            id: 305, set: 3, word: "自投羅網", zhuyin: "ㄗˋ ㄊㄡˊ ㄌㄨㄛˊ ㄨㄤˇ", 
-            meaning: "比喻落入圈套或自取災禍。", 
-            example: "壞人以為這裡安全，結果卻是____，被警察抓個正著。", 
-            options: ["自投羅網", "逃之夭夭", "全身而退", "明哲保身"],
-            synonyms: ["飛蛾撲火", "作繭自縛"],
-            antonyms: ["逃之夭夭", "全身而退"]
-          },
+          // --- Set 3 (5-6 畫) ---
+          { set: 3, word: "以身作則", zhuyin: "ㄧˇ ㄕㄣ ㄗㄨㄛˋ ㄗㄜˊ", meaning: "用自己的行動做榜樣。", example: "父母應該____，教導孩子正確的觀念。", synonyms: ["身體力行"], antonyms: ["只說不做"] },
+          { set: 3, word: "出類拔萃", zhuyin: "ㄔㄨ ㄌㄟˋ ㄅㄚˊ ㄘㄨㄟˋ", meaning: "在同類中最突出。", example: "他的表現____，獲得了冠軍。", synonyms: ["鶴立雞群"], antonyms: ["濫竽充數"] },
+          { set: 3, word: "失魂落魄", zhuyin: "ㄕ ㄏㄨㄣˊ ㄌㄨㄛˋ ㄆㄛˋ", meaning: "非常慌張或心神不定。", example: "聽到壞消息，他嚇得____。", synonyms: ["魂不守舍"], antonyms: ["神采飛揚"] },
+          { set: 3, word: "半途而廢", zhuyin: "ㄅㄢˋ ㄊㄨˊ ㄦˊ ㄈㄟˋ", meaning: "做到一半就停止。", example: "學習樂器要持之以恆，不可____。", synonyms: ["功虧一簣"], antonyms: ["堅持到底"] },
+          { set: 3, word: "左右為難", zhuyin: "ㄗㄨㄛˇ ㄧㄡˋ ㄨㄟˊ ㄋㄢˊ", meaning: "兩邊都不好選擇。", example: "一邊是友情一邊是正義，讓他____。", synonyms: ["進退兩難"], antonyms: ["當機立斷"] },
+          { set: 3, word: "平易近人", zhuyin: "ㄆㄧㄥˊ ㄧˋ ㄐㄧㄣˋ ㄖㄣˊ", meaning: "態度和善，容易親近。", example: "這位校長____，學生都很喜歡他。", synonyms: ["和藹可親"], antonyms: ["高不可攀", "盛氣凌人"] },
+          { set: 3, word: "正大光明", zhuyin: "ㄓㄥˋ ㄉㄚˋ ㄍㄨㄤ ㄇㄧㄥˊ", meaning: "坦坦蕩蕩，不做壞事。", example: "我們做事____，不怕別人閒話。", synonyms: ["光明磊落"], antonyms: ["鬼鬼祟祟"] },
+          { set: 3, word: "白手起家", zhuyin: "ㄅㄞˊ ㄕㄡˇ ㄑㄧˇ ㄐㄧㄚ", meaning: "靠自己努力創立事業。", example: "他年輕時____，現在已是大老闆。", synonyms: ["自力更生"], antonyms: ["坐享其成"] },
+          { set: 3, word: "因材施教", zhuyin: "ㄧㄣ ㄘㄞˊ ㄕ ㄐㄧㄠˋ", meaning: "依學生特點採不同教法。", example: "孔子提倡____，是偉大的教育家。", synonyms: ["量體裁衣"], antonyms: ["一視同仁"] },
+          { set: 3, word: "全力以赴", zhuyin: "ㄑㄩㄢˊ ㄌㄧˋ ㄧˇ ㄈㄨˋ", meaning: "把全部力量投入去做。", example: "比賽雖然艱難，我們一定會____。", synonyms: ["竭盡所能"], antonyms: ["敷衍了事"] },
+          { set: 3, word: "冰清玉潔", zhuyin: "ㄅㄧㄥ ㄑㄧㄥ ㄩˋ ㄐㄧㄝˊ", meaning: "品格純潔清白。", example: "她的人品____，令人敬重。", synonyms: ["潔身自愛"], antonyms: ["同流合汙"] },
+          { set: 3, word: "行雲流水", zhuyin: "ㄒㄧㄥˊ ㄩㄣˊ ㄌㄧㄡˊ ㄕㄨㄟˇ", meaning: "文章或動作自然流暢。", example: "這篇文章寫得____，讀起來很舒服。", synonyms: ["揮灑自如"], antonyms: ["矯揉造作"] },
+          { set: 3, word: "有志竟成", zhuyin: "ㄧㄡˇ ㄓˋ ㄐㄧㄥˋ ㄔㄥˊ", meaning: "有志向就能成功。", example: "相信____，只要努力夢想終會實現。", synonyms: ["皇天不負苦心人"], antonyms: [] },
+          { set: 3, word: "先苦後甘", zhuyin: "ㄒㄧㄢ ㄎㄨˇ ㄏㄡˋ ㄍㄢ", meaning: "先辛苦後享受成果。", example: "讀書雖然辛苦，但____，未來會有好發展。", synonyms: ["苦盡甘來"], antonyms: [] },
+          { set: 3, word: "同心協力", zhuyin: "ㄊㄨㄥˊ ㄒㄧㄣ ㄒㄧㄝˊ ㄌㄧˋ", meaning: "大家團結一起努力。", example: "只要大家____，沒有解決不了的難題。", synonyms: ["團結一致"], antonyms: ["一盤散沙"] },
+          { set: 3, word: "光明磊落", zhuyin: "ㄍㄨㄤ ㄇㄧㄥˊ ㄌㄟˇ ㄌㄨㄛˋ", meaning: "做人坦蕩、正直。", example: "他一生____，深受大家敬重。", synonyms: ["正大光明"], antonyms: ["卑鄙無恥"] },
 
-          // --- 第 4 組 (7-8 畫) ---
-          { 
-            id: 401, set: 4, word: "呆若木雞", zhuyin: "ㄉㄞ ㄖㄨㄛˋ ㄇㄨˋ ㄐㄧ", 
-            meaning: "形容因驚恐或驚訝而發愣的樣子。", 
-            example: "聽到這個驚人的消息，他整個人____，說不出話來。", 
-            options: ["呆若木雞", "神采飛揚", "談笑風生", "泰然自若"],
-            synonyms: ["目瞪口呆", "瞠目結舌"],
-            antonyms: ["神采飛揚", "從容不迫"]
-          },
-          { 
-            id: 402, set: 4, word: "花言巧語", zhuyin: "ㄏㄨㄚ ㄧㄢˊ ㄑㄧㄠˇ ㄩˇ", 
-            meaning: "形容虛假而動聽的言語。", 
-            example: "不要相信詐騙集團的____，以免上當受騙。", 
-            options: ["花言巧語", "忠言逆耳", "金玉良言", "肺腑之言"],
-            synonyms: ["甜言蜜語", "口蜜腹劍"],
-            antonyms: ["肺腑之言", "忠言逆耳", "金玉良言"]
-          },
-          { 
-            id: 403, set: 4, word: "表裡如一", zhuyin: "ㄅㄧㄠˇ ㄌㄧˇ ㄖㄨˊ ㄧ", 
-            meaning: "指外表和內心一致。", 
-            example: "他是一個____的君子，絕對不會在背後說人壞話。", 
-            options: ["表裡如一", "口是心非", "兩面三刀", "陽奉陰違"],
-            synonyms: ["言行一致", "誠心誠意"],
-            antonyms: ["口是心非", "表裡不一", "笑裡藏刀"]
-          },
-          { 
-            id: 404, set: 4, word: "柳暗花明", zhuyin: "ㄌㄧㄡˇ ㄢˋ ㄏㄨㄚ ㄇㄧㄥˊ", 
-            meaning: "比喻在絕望中產生轉機。", 
-            example: "只要不放棄，事情總會有____的一天。", 
-            options: ["柳暗花明", "山窮水盡", "走投無路", "日暮途窮"],
-            synonyms: ["峰迴路轉", "絕處逢生"],
-            antonyms: ["山窮水盡", "走投無路"]
-          },
-          { 
-            id: 405, set: 4, word: "垂頭喪氣", zhuyin: "ㄔㄨㄟˊ ㄊㄡˊ ㄙㄤˋ ㄑㄧˋ", 
-            meaning: "形容失意沮喪的樣子。", 
-            example: "比賽輸了，隊員們個個____。", 
-            options: ["垂頭喪氣", "趾高氣揚", "得意洋洋", "意氣風發"],
-            synonyms: ["灰心喪氣", "無精打采"],
-            antonyms: ["趾高氣揚", "神采飛揚", "意氣風發"]
-          },
+          // --- Set 4 (7-8 畫) ---
+          { set: 4, word: "言而有信", zhuyin: "ㄧㄢˊ ㄦˊ ㄧㄡˇ ㄒㄧㄣˋ", meaning: "說到做到，守信用。", example: "做人要____，才能贏得信任。", synonyms: ["一諾千金"], antonyms: ["言而無信", "食言而肥"] },
+          { set: 4, word: "事半功倍", zhuyin: "ㄕˋ ㄅㄢˋ ㄍㄨㄥ ㄅㄟˋ", meaning: "用較少力氣得更大成果。", example: "用對方法，學習就能____。", synonyms: ["一舉兩得"], antonyms: ["事倍功半"] },
+          { set: 4, word: "志在必得", zhuyin: "ㄓˋ ㄗㄞˋ ㄅㄧˋ ㄉㄜˊ", meaning: "下定決心一定要得到。", example: "這次的冠軍，我們隊是____。", synonyms: ["勢在必得"], antonyms: [] },
+          { set: 4, word: "身體力行", zhuyin: "ㄕㄣ ㄊㄧˇ ㄌㄧˋ ㄒㄧㄥˊ", meaning: "親自去做、用行動實踐。", example: "環保不能只用嘴說，要____。", synonyms: ["躬行實踐"], antonyms: ["紙上談兵"] },
+          { set: 4, word: "吹毛求疵", zhuyin: "ㄔㄨㄟ ㄇㄠˊ ㄑㄧㄡˊ ㄘ", meaning: "過度挑剔小毛病。", example: "他對人總是____，很難相處。", synonyms: ["雞蛋裡挑骨頭"], antonyms: ["寬宏大量"] },
+          { set: 4, word: "形影不離", zhuyin: "ㄒㄧㄥˊ ㄧㄥˇ ㄅㄨˋ ㄌㄧˊ", meaning: "關係親密，總在一起。", example: "他們兩個是____的好朋友。", synonyms: ["如膠似漆"], antonyms: ["若即若離"] },
+          { set: 4, word: "兵分兩路", zhuyin: "ㄅㄧㄥ ㄈㄣ ㄌㄧㄤˇ ㄌㄨˋ", meaning: "分成兩隊同時行動。", example: "我們____，一組去買菜，一組去佈置。", synonyms: ["分頭進行"], antonyms: [] },
+          { set: 4, word: "良師益友", zhuyin: "ㄌㄧㄤˊ ㄕ ㄧˋ ㄧㄡˇ", meaning: "能教導又能幫助的朋友。", example: "好書就像____，能帶給我們智慧。", synonyms: [], antonyms: ["損友"] },
+          { set: 4, word: "刻苦耐勞", zhuyin: "ㄎㄜˋ ㄎㄨˇ ㄋㄞˋ ㄌㄠˊ", meaning: "能吃苦、能忍耐辛勞。", example: "農夫們____地在田裡工作。", synonyms: ["任勞任怨"], antonyms: ["好逸惡勞"] },
+          { set: 4, word: "表裡如一", zhuyin: "ㄅㄧㄠˇ ㄌㄧˇ ㄖㄨˊ ㄧ", meaning: "外表和內心一致。", example: "他是個____的君子。", synonyms: ["言行一致"], antonyms: ["口是心非"] },
+          { set: 4, word: "物以類聚", zhuyin: "ㄨˋ ㄧˇ ㄌㄟˋ ㄐㄩˋ", meaning: "同類的人或事會聚在一起。", example: "俗話說____，喜歡運動的人自然玩在一起。", synonyms: ["臭味相投"], antonyms: [] },
+          { set: 4, word: "呼風喚雨", zhuyin: "ㄏㄨ ㄈㄥ ㄏㄨㄢˋ ㄩˇ", meaning: "形容本領大或影響力強。", example: "他在商場上____，極具影響力。", synonyms: ["興風作浪"], antonyms: [] },
+          { set: 4, word: "居高臨下", zhuyin: "ㄐㄩ ㄍㄠ ㄌㄧㄣˊ ㄒㄧㄚˋ", meaning: "站得高往下看，佔優勢。", example: "登山隊____，俯瞰整個城市。", synonyms: ["高屋建瓴"], antonyms: [] },
+          { set: 4, word: "拋磚引玉", zhuyin: "ㄆㄠ ㄓㄨㄢ ㄧㄣˇ ㄩˋ", meaning: "先提出粗淺看法引出好意見。", example: "我先發言____，希望大家多給意見。", synonyms: [], antonyms: [] },
+          { set: 4, word: "和顏悅色", zhuyin: "ㄏㄜˊ ㄧㄢˊ ㄩㄝˋ ㄙㄜˋ", meaning: "態度和氣、表情愉快。", example: "老師總是____地指導我們。", synonyms: ["平易近人"], antonyms: ["聲色俱厲"] },
+          { set: 4, word: "奉公守法", zhuyin: "ㄈㄥˋ ㄍㄨㄥ ㄕㄡˇ ㄈㄚˇ", meaning: "遵守法律，盡責做事。", example: "他是個____的好公民。", synonyms: ["循規蹈矩"], antonyms: ["作奸犯科"] },
 
-          // --- 第 5 組 (9-10 畫) ---
-          { 
-            id: 501, set: 5, word: "害群之馬", zhuyin: "ㄏㄞˋ ㄑㄩㄣˊ ㄓ ㄇㄚˇ", 
-            meaning: "比喻危害群體的人。", 
-            example: "我們要遵守班規，不要當____。", 
-            options: ["害群之馬", "棟樑之才", "中流砥柱", "人中之龍"],
-            synonyms: ["群蟻附羶"],
-            antonyms: ["棟樑之才", "中流砥柱"]
-          },
-          { 
-            id: 502, set: 5, word: "捕風捉影", zhuyin: "ㄅㄨˇ ㄈㄥ ㄓㄨㄛ ㄧㄥˇ", 
-            meaning: "比喻說話或做事沒有事實根據。", 
-            example: "這件事純屬____的謠言，大家不要相信。", 
-            options: ["捕風捉影", "實事求是", "證據確鑿", "鐵證如山"],
-            synonyms: ["無中生有", "空穴來風"],
-            antonyms: ["實事求是", "鐵證如山"]
-          },
-          { 
-            id: 503, set: 5, word: "挺身而出", zhuyin: "ㄊㄧㄥˇ ㄕㄣ ㄦˊ ㄔㄨ", 
-            meaning: "遇到危難或責任時，勇敢地站出來。", 
-            example: "看到有人被欺負，他立刻____主持公道。", 
-            options: ["挺身而出", "袖手旁觀", "畏縮不前", "置身事外"],
-            synonyms: ["自告奮勇", "見義勇為"],
-            antonyms: ["袖手旁觀", "畏縮不前", "明哲保身"]
-          },
-          { 
-            id: 504, set: 5, word: "得心應手", zhuyin: "ㄉㄜˊ ㄒㄧㄣ ㄧㄥˋ ㄕㄡˇ", 
-            meaning: "形容技藝熟練，運用自如。", 
-            example: "他彈鋼琴已經到了____的境界。", 
-            options: ["得心應手", "手忙腳亂", "力不從心", "笨手笨腳"],
-            synonyms: ["運用自如", "駕輕就熟"],
-            antonyms: ["手忙腳亂", "力不從心", "束手無策"]
-          },
-          { 
-            id: 505, set: 5, word: "頂天立地", zhuyin: "ㄉㄧㄥˇ ㄊㄧㄢ ㄌㄧˋ ㄉㄧˋ", 
-            meaning: "形容人氣概豪邁，光明正大。", 
-            example: "做人要____，仰不愧於天，俯不怍於人。", 
-            options: ["頂天立地", "卑躬屈膝", "奴顏婢膝", "唯唯諾諾"],
-            synonyms: ["光明磊落"],
-            antonyms: ["卑躬屈膝", "奴顏婢膝"]
-          },
+          // --- Set 5 (9-10 畫) ---
+          { set: 5, word: "冒險犯難", zhuyin: "ㄇㄠˋ ㄒㄧㄢˇ ㄈㄢˋ ㄋㄢˋ", meaning: "不怕危險困難，勇敢面對。", example: "消防員____衝進火場救人。", synonyms: ["出生入死"], antonyms: ["畏縮不前"] },
+          { set: 5, word: "怨天尤人", zhuyin: "ㄩㄢˋ ㄊㄧㄢ ㄧㄡˊ ㄖㄣˊ", meaning: "怪天怪人，不反省自己。", example: "遇到挫折要檢討自己，不要____。", synonyms: ["推卸責任"], antonyms: ["反求諸己"] },
+          { set: 5, word: "花言巧語", zhuyin: "ㄏㄨㄚ ㄧㄢˊ ㄑㄧㄠˇ ㄩˇ", meaning: "用好聽話哄騙人。", example: "別被他的____給騙了。", synonyms: ["甜言蜜語"], antonyms: ["肺腑之言"] },
+          { set: 5, word: "風平浪靜", zhuyin: "ㄈㄥ ㄆㄧㄥˊ ㄌㄤˋ ㄐㄧㄥˋ", meaning: "沒有波折，平安順利。", example: "海面上____，適合航行。", synonyms: ["平安無事"], antonyms: ["驚濤駭浪"] },
+          { set: 5, word: "洗耳恭聽", zhuyin: "ㄒㄧˇ ㄦˇ ㄍㄨㄥ ㄊㄧㄥ", meaning: "專心恭敬地聽。", example: "對於專家的意見，我們____。", synonyms: ["傾耳細聽"], antonyms: ["充耳不聞"] },
+          { set: 5, word: "柳暗花明", zhuyin: "ㄌㄧㄡˇ ㄢˋ ㄏㄨㄚ ㄇㄧㄥˊ", meaning: "困境後出現轉機。", example: "堅持下去，總有____的一天。", synonyms: ["絕處逢生"], antonyms: ["山窮水盡"] },
+          { set: 5, word: "面紅耳赤", zhuyin: "ㄇㄧㄢˋ ㄏㄨㄥˊ ㄦˇ ㄔˋ", meaning: "害羞或激動而臉紅。", example: "他們爭論得____，互不相讓。", synonyms: ["惱羞成怒"], antonyms: ["面不改色"] },
+          { set: 5, word: "勇往直前", zhuyin: "ㄩㄥˇ ㄨㄤˇ ㄓˊ ㄑㄧㄢˊ", meaning: "不退縮，向前衝。", example: "為了夢想，我們要____。", synonyms: ["奮不顧身"], antonyms: ["畏縮不前"] },
+          { set: 5, word: "原封不動", zhuyin: "ㄩㄢˊ ㄈㄥ ㄅㄨˋ ㄉㄨㄥˋ", meaning: "完全沒有改變。", example: "我把借來的書____地還給他。", synonyms: ["完好如初"], antonyms: ["面目全非"] },
+          { set: 5, word: "害群之馬", zhuyin: "ㄏㄞˋ ㄑㄩㄣˊ ㄓ ㄇㄚˇ", meaning: "團體中帶來壞影響的人。", example: "我們要遵守紀律，不做____。", synonyms: ["老鼠屎"], antonyms: ["中流砥柱"] },
+          { set: 5, word: "捕風捉影", zhuyin: "ㄅㄨˇ ㄈㄥ ㄓㄨㄛ ㄧㄥˇ", meaning: "沒有根據就亂猜。", example: "這些都是____的謠言，不可信。", synonyms: ["無中生有"], antonyms: ["鐵證如山"] },
+          { set: 5, word: "高瞻遠矚", zhuyin: "ㄍㄠ ㄓㄢ ㄩㄢˇ ㄓㄨˇ", meaning: "眼光長遠，想得周到。", example: "這項計畫顯示了決策者____的眼光。", synonyms: ["深謀遠慮"], antonyms: ["鼠目寸光"] },
+          { set: 5, word: "馬到成功", zhuyin: "ㄇㄚˇ ㄉㄠˋ ㄔㄥˊ ㄍㄨㄥ", meaning: "事情進行很順利、很快成功。", example: "祝你這次考試____！", synonyms: ["旗開得勝"], antonyms: ["屢戰屢敗"] },
+          { set: 5, word: "胸有成竹", zhuyin: "ㄒㄩㄥ ㄧㄡˇ ㄔㄥˊ ㄓㄨˊ", meaning: "做事前已有完整計畫。", example: "對於這次比賽，他早已____。", synonyms: ["信心十足"], antonyms: ["手足無措"] },
+          { set: 5, word: "推陳出新", zhuyin: "ㄊㄨㄟ ㄔㄣˊ ㄔㄨ ㄒㄧㄣ", meaning: "去舊創新，提出新想法。", example: "這家店不斷____，吸引許多顧客。", synonyms: ["除舊布新"], antonyms: ["墨守成規"] },
+          { set: 5, word: "破釜沉舟", zhuyin: "ㄆㄛˋ ㄈㄨˇ ㄔㄣˊ ㄓㄡ", meaning: "下定決心不留退路。", example: "這次決賽，隊員們抱著____的決心。", synonyms: ["背水一戰"], antonyms: ["優柔寡斷"] },
 
-          // --- 第 6 組 (11-12 畫) ---
-          { 
-            id: 601, set: 6, word: "喜出望外", zhuyin: "ㄒㄧˇ ㄔㄨ ㄨㄤˋ ㄨㄞˋ", 
-            meaning: "因意想不到的喜事而特別高興。", 
-            example: "聽到中了頭獎的消息，他簡直____。", 
-            options: ["喜出望外", "大失所望", "悲痛欲絕", "心如死灰"],
-            synonyms: ["大喜過望", "欣喜若狂"],
-            antonyms: ["大失所望", "悲痛欲絕", "晴天霹靂"]
-          },
-          { 
-            id: 602, set: 6, word: "揚眉吐氣", zhuyin: "ㄧㄤˊ ㄇㄟˊ ㄊㄨˇ ㄑㄧˋ", 
-            meaning: "形容擺脫壓抑心情後的興奮神情。", 
-            example: "這次比賽奪冠，終於讓他____了。", 
-            options: ["揚眉吐氣", "垂頭喪氣", "忍氣吞聲", "委曲求全"],
-            synonyms: ["意氣風發"],
-            antonyms: ["垂頭喪氣", "忍氣吞聲", "愁眉苦臉"]
-          },
-          { 
-            id: 603, set: 6, word: "毫不氣餒", zhuyin: "ㄏㄠˊ ㄅㄨˋ ㄑㄧˋ ㄋㄟˇ", 
-            meaning: "一點也不喪失勇氣。", 
-            example: "雖然失敗了很多次，但他____，繼續努力。", 
-            options: ["毫不氣餒", "心灰意冷", "半途而廢", "一蹶不振"],
-            synonyms: ["再接再厲", "百折不撓"],
-            antonyms: ["心灰意冷", "一蹶不振"]
-          },
-          { 
-            id: 604, set: 6, word: "凱旋而歸", zhuyin: "ㄎㄞˇ ㄒㄩㄢˊ ㄦˊ ㄍㄨㄟ", 
-            meaning: "獲勝歸來。", 
-            example: "戰士們打贏了勝仗，____。", 
-            options: ["凱旋而歸", "鎩羽而歸", "全軍覆沒", "大敗而逃"],
-            synonyms: ["滿載而歸", "班師回朝"],
-            antonyms: ["鎩羽而歸", "全軍覆沒", "一敗塗地"]
-          },
-          { 
-            id: 605, set: 6, word: "富可敵國", zhuyin: "ㄈㄨˋ ㄎㄜˇ ㄉㄧˊ ㄍㄨㄛˊ", 
-            meaning: "形容極為富有。", 
-            example: "傳說這位商人的財富____，令人羨慕。", 
-            options: ["富可敵國", "一貧如洗", "家徒四壁", "身無分文"],
-            synonyms: ["腰纏萬貫", "揮金如土"],
-            antonyms: ["一貧如洗", "家徒四壁", "兩袖清風"]
-          },
+          // --- Set 6 (11-12 畫) ---
+          { set: 6, word: "得心應手", zhuyin: "ㄉㄜˊ ㄒㄧㄣ ㄧㄥˋ ㄕㄡˇ", meaning: "做起來很順手、很熟練。", example: "他操作機器已經____。", synonyms: ["駕輕就熟"], antonyms: ["手忙腳亂"] },
+          { set: 6, word: "情不自禁", zhuyin: "ㄑㄧㄥˊ ㄅㄨˋ ㄗˋ ㄐㄧㄣ", meaning: "控制不住自己的情感。", example: "聽到感人的故事，他____流下眼淚。", synonyms: ["不由自主"], antonyms: ["無動於衷"] },
+          { set: 6, word: "頂天立地", zhuyin: "ㄉㄧㄥˇ ㄊㄧㄢ ㄌㄧˋ ㄉㄧˋ", meaning: "做人正直、有擔當。", example: "做人要____，無愧於心。", synonyms: ["光明磊落"], antonyms: ["卑躬屈膝"] },
+          { set: 6, word: "喜出望外", zhuyin: "ㄒㄧˇ ㄔㄨ ㄨㄤˋ ㄨㄞˋ", meaning: "高興得出乎意料。", example: "收到遠方朋友的禮物，讓他____。", synonyms: ["大喜過望"], antonyms: ["大失所望"] },
+          { set: 6, word: "揚眉吐氣", zhuyin: "ㄧㄤˊ ㄇㄟˊ ㄊㄨˇ ㄑㄧˋ", meaning: "擺脫委屈，覺得痛快。", example: "苦練多年，他終於在比賽中奪冠，____。", synonyms: ["意氣風發"], antonyms: ["垂頭喪氣"] },
+          { set: 6, word: "國色天香", zhuyin: "ㄍㄨㄛˊ ㄙㄜˋ ㄊㄧㄢ ㄒㄧㄤ", meaning: "形容非常美麗出眾。", example: "牡丹花被譽為____，花中之王。", synonyms: ["沉魚落雁"], antonyms: ["其貌不揚"] },
+          { set: 6, word: "提心吊膽", zhuyin: "ㄊㄧˊ ㄒㄧㄣ ㄉㄧㄠˋ ㄉㄢˇ", meaning: "非常擔心害怕。", example: "走在漆黑的巷子裡，令人____。", synonyms: ["膽戰心驚"], antonyms: ["心安理得"] },
+          { set: 6, word: "得過且過", zhuyin: "ㄉㄜˊ ㄍㄨㄛˋ ㄑㄧㄝˇ ㄍㄨㄛˋ", meaning: "只求過得去，不求進步。", example: "年輕人要有理想，不能____。", synonyms: ["敷衍塞責"], antonyms: ["精益求精"] },
+          { set: 6, word: "畫龍點睛", zhuyin: "ㄏㄨㄚˋ ㄌㄨㄥˊ ㄉㄧㄢˇ ㄐㄧㄥ", meaning: "在關鍵處加一筆使更精彩。", example: "這個結尾真是____，讓整篇文章更出色。", synonyms: ["錦上添花"], antonyms: ["畫蛇添足"] },
+          { set: 6, word: "忍氣吞聲", zhuyin: "ㄖㄣˇ ㄑㄧˋ ㄊㄨㄣ ㄕㄥ", meaning: "受委屈而忍著不說。", example: "為了顧全大局，他只好____。", synonyms: ["委曲求全"], antonyms: ["據理力爭"] },
+          { set: 6, word: "呆若木雞", zhuyin: "ㄉㄞ ㄖㄨㄛˋ ㄇㄨˋ ㄐㄧ", meaning: "愣住不動，像木頭雞。", example: "聽到這個消息，他驚訝得____。", synonyms: ["目瞪口呆"], antonyms: ["神采飛揚"] },
+          { set: 6, word: "坐吃山空", zhuyin: "ㄗㄨㄛˋ ㄔ ㄕㄢ ㄎㄨㄥ", meaning: "只花不賺，終會用盡。", example: "如果不工作只花錢，金山銀山也會____。", synonyms: ["坐享其成"], antonyms: ["開源節流"] },
+          { set: 6, word: "束手無策", zhuyin: "ㄕㄨˋ ㄕㄡˇ ㄨˊ ㄘㄜˋ", meaning: "一點辦法也沒有。", example: "面對這個難題，大家一時____。", synonyms: ["無計可施"], antonyms: ["足智多謀"] },
+          { set: 6, word: "自相矛盾", zhuyin: "ㄗˋ ㄒㄧㄤ ㄇㄠˊ ㄉㄨㄣˋ", meaning: "前後說法互相衝突。", example: "你的說法____，讓人無法相信。", synonyms: ["漏洞百出"], antonyms: ["自圓其說"] },
+          { set: 6, word: "忙裡偷閒", zhuyin: "ㄇㄤˊ ㄌㄧˇ ㄊㄡ ㄒㄧㄢˊ", meaning: "很忙還抽空休息。", example: "他在繁忙的工作中____，喝了杯咖啡。", synonyms: ["苦中作樂"], antonyms: [] },
+          { set: 6, word: "因禍得福", zhuyin: "ㄧㄣ ㄏㄨㄛˋ ㄉㄜˊ ㄈㄨˊ", meaning: "壞事反而帶來好結果。", example: "雖然生病住院，但他____，戒掉了菸酒。", synonyms: ["塞翁失馬"], antonyms: ["樂極生悲"] },
+
+          // --- Set 7 (13-14 畫) ---
+          { set: 7, word: "無微不至", zhuyin: "ㄨˊ ㄨㄟˊ ㄅㄨˋ ㄓˋ", meaning: "照顧得非常周到細心。", example: "父母對我們的照顧真是____。", synonyms: ["無微不至"], antonyms: ["漠不關心"] },
+          { set: 7, word: "源遠流長", zhuyin: "ㄩㄢˊ ㄩㄢˇ ㄌㄧㄡˊ ㄔㄤˊ", meaning: "來源久遠、流傳很久。", example: "中華文化____，博大精深。", synonyms: ["根深蒂固"], antonyms: ["曇花一現"] },
+          { set: 7, word: "義不容辭", zhuyin: "ㄧˋ ㄅㄨˋ ㄖㄨㄥˊ ㄘˊ", meaning: "道義上不能推辭。", example: "朋友有難，我____一定要幫忙。", synonyms: ["當仁不讓"], antonyms: ["推三阻四"] },
+          { set: 7, word: "樂此不疲", zhuyin: "ㄌㄜˋ ㄘˇ ㄅㄨˋ ㄆㄧˊ", meaning: "做某事很樂意，不覺得累。", example: "他對集郵____，收藏了許多珍品。", synonyms: ["樂在其中"], antonyms: ["心生厭倦"] },
+          { set: 7, word: "溫故知新", zhuyin: "ㄨㄣ ㄍㄨˋ ㄓ ㄒㄧㄣ", meaning: "複習舊知識得到新理解。", example: "學習要____，才能融會貫通。", synonyms: [], antonyms: [] },
+          { set: 7, word: "順其自然", zhuyin: "ㄕㄨㄣˋ ㄑㄧˊ ㄗˋ ㄖㄢˊ", meaning: "按自然發展，不勉強。", example: "有些事強求不來，不如____。", synonyms: ["聽天由命"], antonyms: ["揠苗助長"] },
+          { set: 7, word: "睹物思人", zhuyin: "ㄉㄨˇ ㄨˋ ㄙ ㄖㄣˊ", meaning: "看到物品就想起某人。", example: "看著這張舊照片，不禁讓人____。", synonyms: ["觸景生情"], antonyms: ["無動於衷"] },
+          { set: 7, word: "勤能補拙", zhuyin: "ㄑㄧㄣˊ ㄋㄥˊ ㄅㄨˇ ㄓㄨㄛˊ", meaning: "勤奮可以彌補不足。", example: "雖然他不聰明，但相信____，終會成功。", synonyms: ["人一己百"], antonyms: [] },
+          { set: 7, word: "舉足輕重", zhuyin: "ㄐㄩˇ ㄗㄨˊ ㄑㄧㄥ ㄓㄨㄥˋ", meaning: "影響力很大，地位重要。", example: "他在公司擔任____的角色。", synonyms: ["舉足輕重"], antonyms: ["無足輕重"] },
+          { set: 7, word: "滴水穿石", zhuyin: "ㄉㄧ ㄕㄨㄟˇ ㄔㄨㄢ ㄕˊ", meaning: "持之以恆終能成功。", example: "只要有____的精神，再難的事也能完成。", synonyms: ["鐵杵磨針"], antonyms: ["半途而廢"] },
+          { set: 7, word: "精益求精", zhuyin: "ㄐㄧㄥ ㄧˋ ㄑㄧㄡˊ ㄐㄧㄥ", meaning: "已很好還要更好。", example: "他的技術已經很好，但仍____。", synonyms: ["好上加好"], antonyms: ["得過且過"] },
+          { set: 7, word: "聚精會神", zhuyin: "ㄐㄩˋ ㄐㄧㄥ ㄏㄨㄟˋ ㄕㄣˊ", meaning: "非常專注。", example: "同學們____地聽老師講課。", synonyms: ["全神貫注"], antonyms: ["心不在焉"] },
+          { set: 7, word: "漫不經心", zhuyin: "ㄇㄢˋ ㄅㄨˋ ㄐㄧㄥ ㄒㄧㄣ", meaning: "不在意、不專心。", example: "他工作____，常出差錯。", synonyms: ["心不在焉"], antonyms: ["全神貫注"] },
+          { set: 7, word: "謙虛謹慎", zhuyin: "ㄑㄧㄢ ㄒㄩ ㄐㄧㄣˇ ㄕㄣˋ", meaning: "不自滿，做事小心。", example: "做人要____，才能不斷進步。", synonyms: ["虛懷若谷"], antonyms: ["驕傲自大"] },
+          { set: 7, word: "輕而易舉", zhuyin: "ㄑㄧㄥ ㄦˊ ㄧˋ ㄐㄩˇ", meaning: "非常容易做到。", example: "這件事對他來說____。", synonyms: ["易如反掌"], antonyms: ["難如登天"] },
+          { set: 7, word: "銘記在心", zhuyin: "ㄇㄧㄥˊ ㄐㄧˋ ㄗㄞˋ ㄒㄧㄣ", meaning: "牢牢記住在心裡。", example: "老師的教誨，我會____。", synonyms: ["刻骨銘心"], antonyms: ["過眼雲煙"] },
+
+          // --- Set 8 (15 畫及以上) ---
+          { set: 8, word: "舉一反三", zhuyin: "ㄐㄩˇ ㄧ ㄈㄢˇ ㄙㄢ", meaning: "由一個例子推想到更多。", example: "讀書要能____，靈活運用。", synonyms: ["觸類旁通"], antonyms: ["囫圇吞棗"] },
+          { set: 8, word: "學以致用", zhuyin: "ㄒㄩㄝˊ ㄧˇ ㄓˋ ㄩㄥˋ", meaning: "把學到的用在生活中。", example: "學習的目的在於____，解決實際問題。", synonyms: ["身體力行"], antonyms: ["紙上談兵"] },
+          { set: 8, word: "腳踏實地", zhuyin: "ㄐㄧㄠˇ ㄊㄚˋ ㄕˊ ㄉㄧˋ", meaning: "做事務實，不浮誇。", example: "做人要____，一步一腳印。", synonyms: ["實事求是"], antonyms: ["好高騖遠"] },
+          { set: 8, word: "鍥而不捨", zhuyin: "ㄑㄧㄝˋ ㄦˊ ㄅㄨˋ ㄕㄜˇ", meaning: "堅持到底不放棄。", example: "科學家憑著____的精神，終於發明新藥。", synonyms: ["持之以恆"], antonyms: ["半途而廢"] },
+          { set: 8, word: "融會貫通", zhuyin: "ㄖㄨㄥˊ ㄏㄨㄟˋ ㄍㄨㄢˋ ㄊㄨㄥ", meaning: "把知識理解並能靈活運用。", example: "把各科知識____，才能學得更好。", synonyms: ["觸類旁通"], antonyms: ["一知半解"] },
+          { set: 8, word: "循序漸進", zhuyin: "ㄒㄩㄣˊ ㄒㄩˋ ㄐㄧㄢˋ ㄐㄧㄣˋ", meaning: "按步驟慢慢前進。", example: "學習要____，不能急於求成。", synonyms: ["按部就班"], antonyms: ["揠苗助長"] },
+          { set: 8, word: "適得其所", zhuyin: "ㄕˋ ㄉㄜˊ ㄑㄧˊ ㄙㄨㄛˇ", meaning: "安排得很恰當。", example: "這筆捐款用在需要的人身上，真是____。", synonyms: ["恰如其分"], antonyms: [] },
+          { set: 8, word: "興高采烈", zhuyin: "ㄒㄧㄥˋ ㄍㄠ ㄘㄞˇ ㄌㄧㄝˋ", meaning: "非常高興、情緒高昂。", example: "孩子們____地去校外教學。", synonyms: ["歡天喜地"], antonyms: ["愁眉苦臉"] },
         ];
 
         // --- 3. 狀態變數 (State) ---
         let state = {
-            view: 'home', // home, sets, activities, practice, result
+            view: 'home', 
             currentSet: 1,
-            activityType: 'learn', // learn, quiz_meaning, quiz_synonym_antonym, fill_blank, comprehensive
+            activityType: 'learn', 
             currentIndex: 0,
             score: 0,
             answersLog: [],
             studentName: '',
             scriptUrl: 'https://script.google.com/macros/s/AKfycbyoFfvC-xeLlAcfG2uI-cGUdm7YFVKJyGO7NEiekYOYIWJLEMDUBPIh83QjKwHQyJjs-g/exec',
-            feedback: null, // 'correct', 'wrong'
+            feedback: null, 
             isSubmitting: false,
             submitStatus: null
         };
@@ -362,9 +255,10 @@
             });
         }
 
-        // 取得隨機錯誤選項 (從同組題目中撈)
-        function getDistractors(excludeWord, count, questions) {
-            const others = questions.filter(q => q.word !== excludeWord).map(q => q.word);
+        // 取得隨機錯誤選項 (從整個資料庫中撈，排除當前題目)
+        function getDistractors(excludeWord, count) {
+            const allWords = idiomDatabase.map(q => q.word);
+            const others = allWords.filter(w => w !== excludeWord);
             return others.sort(() => Math.random() - 0.5).slice(0, count);
         }
 
@@ -476,7 +370,6 @@
                 </div>
             `;
             
-            // Bind events
             div.querySelector('#nameInput').addEventListener('input', (e) => state.studentName = e.target.value);
             div.querySelector('#urlInput').addEventListener('input', (e) => state.scriptUrl = e.target.value);
             div.querySelector('#startBtn').addEventListener('click', handleStart);
@@ -488,28 +381,39 @@
             const div = document.createElement('div');
             div.className = "p-6 bg-blue-50 min-h-screen";
             
+            // 定義關卡名稱與筆畫區間
+            const setInfo = [
+                { num: 1, range: "1-2 畫" },
+                { num: 2, range: "3-4 畫" },
+                { num: 3, range: "5-6 畫" },
+                { num: 4, range: "7-8 畫" },
+                { num: 5, range: "9-10 畫" },
+                { num: 6, range: "11-12 畫" },
+                { num: 7, range: "13-14 畫" },
+                { num: 8, range: "15 畫及以上" }
+            ];
+
             let buttonsHtml = '';
-            for (let i = 1; i <= 6; i++) {
+            setInfo.forEach(info => {
                 buttonsHtml += `
-                    <button onclick="selectSet(${i})" class="h-40 bg-white rounded-2xl shadow-md hover:shadow-xl hover:bg-blue-50 transition border-b-4 border-blue-200 hover:border-blue-400 flex flex-col items-center justify-center gap-2 btn-hover">
-                        <span class="text-4xl font-black text-blue-300">0${i}</span>
-                        <span class="text-xl font-bold text-gray-700">第 ${i} 練習</span>
-                        <span class="text-sm text-gray-500">適合筆畫: ${i * 2 - 1}~${i * 2} 畫</span>
+                    <button onclick="selectSet(${info.num})" class="h-40 bg-white rounded-2xl shadow-md hover:shadow-xl hover:bg-blue-50 transition border-b-4 border-blue-200 hover:border-blue-400 flex flex-col items-center justify-center gap-2 btn-hover">
+                        <span class="text-4xl font-black text-blue-300">0${info.num}</span>
+                        <span class="text-xl font-bold text-gray-700">第 ${info.num} 關</span>
+                        <span class="text-sm text-gray-500">適合筆畫: ${info.range}</span>
                     </button>
                 `;
-            }
+            });
 
             div.innerHTML = `
                 <button onclick="updateState({view: 'home'})" class="mb-4 text-blue-500 font-bold flex items-center">← 回首頁</button>
                 <h2 class="text-3xl font-bold text-center text-blue-800 mb-8">選擇挑戰關卡</h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
                     ${buttonsHtml}
                 </div>
             `;
             return div;
         }
 
-        // Global exposing for inline onclick
         window.selectSet = (setNum) => updateState({ currentSet: setNum, view: 'activities' });
         window.updateState = updateState;
 
@@ -517,7 +421,6 @@
             const div = document.createElement('div');
             div.className = "p-6 bg-indigo-50 min-h-screen flex flex-col items-center";
             
-            // Helper to create card HTML
             const createCard = (icon, title, desc, color, type) => `
                 <button onclick="window.appStartPractice('${type}')" class="p-6 rounded-2xl border-b-4 text-left transition hover:-translate-y-1 hover:shadow-lg flex items-start gap-4 ${color} w-full btn-hover">
                     <div class="p-2 bg-white bg-opacity-50 rounded-lg text-gray-800">${icon}</div>
@@ -530,7 +433,7 @@
 
             div.innerHTML = `
                 <button onclick="updateState({view: 'sets'})" class="self-start mb-4 text-indigo-500 font-bold">← 回關卡選單</button>
-                <h2 class="text-3xl font-bold text-indigo-800 mb-2">第 ${state.currentSet} 練習：選擇模式</h2>
+                <h2 class="text-3xl font-bold text-indigo-800 mb-2">第 ${state.currentSet} 關：選擇模式</h2>
                 <p class="text-gray-500 mb-8">準備好要挑戰什麼了嗎？</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl">
                     ${createCard(Icons.BookOpen, "成語解釋 (學習)", "先來認識這些成語的意思和注音吧！", "bg-green-100 text-green-700 border-green-300", 'learn')}
@@ -560,8 +463,8 @@
                         <div class="absolute top-0 left-0 w-full h-4 bg-green-400"></div>
                         <span class="text-gray-400 text-sm font-bold tracking-widest uppercase mb-2 block">Card ${state.currentIndex + 1} / ${questions.length}</span>
                         
-                        <h1 class="text-6xl font-black text-gray-800 mb-4">${currentQ.word}</h1>
-                        <div class="text-3xl text-green-600 font-serif mb-8">${currentQ.zhuyin}</div>
+                        <h1 class="text-5xl md:text-6xl font-black text-gray-800 mb-4">${currentQ.word}</h1>
+                        <div class="text-2xl md:text-3xl text-green-600 font-serif mb-8">${currentQ.zhuyin}</div>
                         
                         <div class="bg-green-50 rounded-xl p-6 mb-4 text-left">
                             <h3 class="font-bold text-green-800 mb-2">【解釋】</h3>
@@ -575,10 +478,10 @@
 
                         <div class="grid grid-cols-2 gap-4 text-sm mb-8">
                             <div class="bg-purple-50 p-2 rounded text-purple-800 text-left">
-                                <span class="font-bold">相似詞：</span>${currentQ.synonyms?.join("、") || "無"}
+                                <span class="font-bold">相似詞：</span>${currentQ.synonyms?.length > 0 ? currentQ.synonyms.join("、") : "無"}
                             </div>
                             <div class="bg-red-50 p-2 rounded text-red-800 text-left">
-                                <span class="font-bold">相反詞：</span>${currentQ.antonyms?.join("、") || "無"}
+                                <span class="font-bold">相反詞：</span>${currentQ.antonyms?.length > 0 ? currentQ.antonyms.join("、") : "無"}
                             </div>
                         </div>
 
@@ -602,23 +505,29 @@
                 return div;
             }
 
-            // --- B. 測驗模式邏輯 ---
+            // --- B. 測驗模式 ---
             div.className = "flex flex-col items-center min-h-screen bg-yellow-50 p-4";
 
             let questionText = "";
             let options = [];
             let correctAnswer = "";
 
+            // 隨機產生選項 (3個誘答 + 1個正確)
+            const generateOptions = (answer) => {
+                const distractors = getDistractors(answer, 3);
+                return [answer, ...distractors].sort(() => Math.random() - 0.5);
+            };
+
             // 題型邏輯
             if (state.activityType === 'quiz_meaning') {
                 questionText = `「${currentQ.meaning}」 是哪一個成語？`;
                 correctAnswer = currentQ.word;
-                options = currentQ.options;
+                options = generateOptions(correctAnswer);
             } 
             else if (state.activityType === 'fill_blank') {
                 questionText = currentQ.example;
                 correctAnswer = currentQ.word;
-                options = currentQ.options;
+                options = generateOptions(correctAnswer);
             }
             
             // 處理相似/相反詞與綜合測驗的邏輯
@@ -628,19 +537,22 @@
                  let type = 'syn'; 
                  if (hasSyn && hasAnt) type = Math.random() > 0.5 ? 'syn' : 'ant';
                  else if (hasAnt) type = 'ant';
+                 else if (!hasSyn && !hasAnt) {
+                     // 若都沒資料，退回考解釋
+                     questionText = `「${currentQ.meaning}」 是哪一個成語？`;
+                     correctAnswer = currentQ.word;
+                     options = generateOptions(correctAnswer);
+                     return;
+                 }
 
                  if (type === 'syn') {
                      correctAnswer = currentQ.synonyms[0];
                      questionText = `下列哪一個是「${currentQ.word}」的相似詞？`;
-                     let distractors = currentQ.antonyms ? [...currentQ.antonyms] : [];
-                     if(distractors.length < 3) distractors = [...distractors, ...getDistractors(currentQ.word, 3 - distractors.length, questions)];
-                     options = [correctAnswer, ...distractors.slice(0,3)].sort(() => Math.random() - 0.5);
+                     options = generateOptions(correctAnswer);
                  } else {
                      correctAnswer = currentQ.antonyms[0];
                      questionText = `下列哪一個是「${currentQ.word}」的相反詞？`;
-                     let distractors = currentQ.synonyms ? [...currentQ.synonyms] : [];
-                     if(distractors.length < 3) distractors = [...distractors, ...getDistractors(currentQ.word, 3 - distractors.length, questions)];
-                     options = [correctAnswer, ...distractors.slice(0,3)].sort(() => Math.random() - 0.5);
+                     options = generateOptions(correctAnswer);
                  }
             };
 
@@ -652,11 +564,11 @@
                 if(seed === 0) {
                     questionText = `「${currentQ.meaning}」 是哪一個成語？`;
                     correctAnswer = currentQ.word;
-                    options = currentQ.options;
+                    options = generateOptions(correctAnswer);
                 } else if (seed === 1) {
                     questionText = currentQ.example;
                     correctAnswer = currentQ.word;
-                    options = currentQ.options;
+                    options = generateOptions(correctAnswer);
                 } else {
                     setupSynAnt();
                 }
@@ -677,6 +589,7 @@
                     <div class="absolute inset-0 bg-red-100 bg-opacity-95 rounded-2xl flex flex-col items-center justify-center z-10 animate-fade-in">
                         <div class="text-red-500">${Icons.XCircle}</div>
                         <span class="text-4xl font-black text-red-600 mt-4">再試一次！</span>
+                        <span class="text-xl text-red-800 mt-2">答案是：${correctAnswer}</span>
                     </div>`;
             }
 
