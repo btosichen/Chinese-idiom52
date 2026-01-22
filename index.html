@@ -323,7 +323,7 @@
             score: 0,
             answersLog: [],
             studentName: '',
-            scriptUrl: '',
+            scriptUrl: 'https://script.google.com/macros/s/AKfycbyoFfvC-xeLlAcfG2uI-cGUdm7YFVKJyGO7NEiekYOYIWJLEMDUBPIh83QjKwHQyJjs-g/exec',
             feedback: null, // 'correct', 'wrong'
             isSubmitting: false,
             submitStatus: null
@@ -471,7 +471,7 @@
                 <div class="mt-12 text-xs text-gray-400 w-full max-w-md">
                     <details>
                         <summary>老師設定 (Google Sheet URL)</summary>
-                        <input id="urlInput" type="text" class="w-full p-2 border mt-2 rounded" placeholder="https://script.google.com/macros/s/AKfycbyoFfvC-xeLlAcfG2uI-cGUdm7YFVKJyGO7NEiekYOYIWJLEMDUBPIh83QjKwHQyJjs-g/exec" value="${state.scriptUrl}">
+                        <input id="urlInput" type="text" class="w-full p-2 border mt-2 rounded" placeholder="貼上 Apps Script 網址" value="${state.scriptUrl}">
                     </details>
                 </div>
             `;
