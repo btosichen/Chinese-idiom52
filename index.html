@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>成語探險家 - 小五互動練習</title>
+    <title>陳以婷的成語探險家</title>
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -37,7 +37,7 @@
         }
     </style>
 </head>
-<body class="bg-blue-50 text-gray-800 min-h-screen">
+<body class="bg-pink-50 text-gray-800 min-h-screen">
 
     <!-- 應用程式容器 -->
     <div id="app" class="min-h-screen flex flex-col">
@@ -56,19 +56,17 @@
             CheckCircle: `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
             XCircle: `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`,
             Save: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>`,
-            Refresh: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>`
+            Refresh: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>`,
+            Clipboard: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>`,
+            Check: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+            X: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
+            Trash: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
+            Eye: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+            CloudUpload: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>`
         };
 
-        // --- 2. 成語資料庫 (擴充版) ---
-        // Mapping:
-        // Set 1: 1-2 畫
-        // Set 2: 3-4 畫
-        // Set 3: 5-6 畫
-        // Set 4: 7-8 畫
-        // Set 5: 9-10 畫
-        // Set 6: 11-12 畫
-        // Set 7: 13-14 畫
-        // Set 8: 15 畫及以上
+        // --- 2. 成語資料庫 ---
+        // (保持與前一版完全相同，包含 Set 1 ~ Set 8 的所有成語)
         const idiomDatabase = [
           // --- Set 1 (1-2 畫) ---
           { set: 1, word: "一言為定", zhuyin: "ㄧ ㄧㄢˊ ㄨㄟˊ ㄉㄧㄥˋ", meaning: "說好就算數，不反悔。", example: "我們約好明天見，____，不見不散。", synonyms: ["一諾千金", "言而有信"], antonyms: ["出爾反爾", "食言而肥"] },
@@ -207,15 +205,25 @@
           { set: 8, word: "興高采烈", zhuyin: "ㄒㄧㄥˋ ㄍㄠ ㄘㄞˇ ㄌㄧㄝˋ", meaning: "非常高興、情緒高昂。", example: "孩子們____地去校外教學。", synonyms: ["歡天喜地"], antonyms: ["愁眉苦臉"] },
         ];
 
-        // --- 3. 狀態變數 (State) ---
+        // --- 3. 狀態與歷史紀錄 ---
+        let savedHistory = [];
+        try {
+            const loaded = localStorage.getItem('idiom_history_sessions_chen');
+            if(loaded) savedHistory = JSON.parse(loaded);
+        } catch(e) { console.log('No history found'); }
+
         let state = {
             view: 'home', 
             currentSet: 1,
             activityType: 'learn', 
             currentIndex: 0,
             score: 0,
-            answersLog: [],
-            studentName: '',
+            
+            currentSessionLog: [], 
+            history: savedHistory, 
+            selectedSession: null, 
+
+            studentName: '陳以婷',
             scriptUrl: 'https://script.google.com/macros/s/AKfycbyoFfvC-xeLlAcfG2uI-cGUdm7YFVKJyGO7NEiekYOYIWJLEMDUBPIh83QjKwHQyJjs-g/exec',
             feedback: null, 
             isSubmitting: false,
@@ -228,7 +236,23 @@
             return idiomDatabase.filter(item => item.set === state.currentSet);
         }
 
-        // --- 5. 核心邏輯 ---
+        function clearHistory() {
+            if(confirm('確定要清除所有作答記錄嗎？')) {
+                localStorage.removeItem('idiom_history_sessions_chen');
+                updateState({ history: [] });
+            }
+        }
+
+        function getModeName(mode) {
+            const map = {
+                'learn': '成語學習',
+                'quiz_meaning': '選出正確答案',
+                'quiz_synonym_antonym': '相似/相反詞',
+                'fill_blank': '靈活運用',
+                'comprehensive': '綜合大測驗'
+            };
+            return map[mode] || mode;
+        }
 
         function updateState(updates) {
             state = { ...state, ...updates };
@@ -236,10 +260,6 @@
         }
 
         function handleStart() {
-            if (!state.studentName.trim()) {
-                alert("請先輸入名字喔！");
-                return;
-            }
             updateState({ view: 'sets' });
         }
 
@@ -248,14 +268,13 @@
                 activityType: type,
                 currentIndex: 0,
                 score: 0,
-                answersLog: [],
+                currentSessionLog: [],
                 feedback: null,
                 submitStatus: null,
                 view: 'practice'
             });
         }
 
-        // 取得隨機錯誤選項 (從整個資料庫中撈，排除當前題目)
         function getDistractors(excludeWord, count) {
             const allWords = idiomDatabase.map(q => q.word);
             const others = allWords.filter(w => w !== excludeWord);
@@ -265,27 +284,23 @@
         function handleAnswer(selectedOption, correctOption, questionData, questionText) {
             const isCorrect = selectedOption === correctOption;
             
-            // 記錄
             const logEntry = {
                 question: questionText || questionData.word,
-                type: state.activityType,
                 userAnswer: selectedOption,
                 correctAnswer: correctOption,
-                isCorrect: isCorrect,
-                timestamp: new Date().toISOString()
+                isCorrect: isCorrect
             };
 
-            const newLog = [...state.answersLog, logEntry];
+            const newLog = [...state.currentSessionLog, logEntry];
             let newScore = state.score;
             if (isCorrect) newScore += 10;
 
             updateState({ 
                 feedback: isCorrect ? 'correct' : 'wrong',
                 score: newScore,
-                answersLog: newLog
+                currentSessionLog: newLog
             });
 
-            // 延遲跳轉
             setTimeout(() => {
                 const questions = getSetData();
                 if (state.currentIndex < questions.length - 1) {
@@ -294,29 +309,75 @@
                         currentIndex: state.currentIndex + 1 
                     });
                 } else {
-                    updateState({ 
-                        feedback: null, 
-                        view: 'result' 
-                    });
+                    finishSession(newLog, newScore, questions.length);
                 }
             }, 1500);
         }
 
-        async function submitToGoogle() {
+        function finishSession(logs, finalScore, totalQ) {
+            const newSession = {
+                id: Date.now(),
+                timestamp: new Date().toISOString(),
+                set: state.currentSet,
+                mode: state.activityType,
+                score: finalScore,
+                totalQuestions: totalQ * 10,
+                questionCount: totalQ, // Store count separately
+                logs: logs
+            };
+
+            const newHistory = [newSession, ...state.history];
+            localStorage.setItem('idiom_history_sessions_chen', JSON.stringify(newHistory));
+
+            updateState({ 
+                feedback: null, 
+                history: newHistory,
+                view: 'result' 
+            });
+        }
+
+        // 修改：統一的上傳邏輯，支援上傳歷史紀錄
+        async function submitToGoogle(sessionData = null) {
             if (!state.scriptUrl) {
                 alert("請先設定 Google Apps Script 網址！");
                 return;
             }
             updateState({ isSubmitting: true });
 
+            // 決定要上傳哪一份資料 (當前練習 or 歷史紀錄)
+            const isHistoryUpload = !!sessionData;
+            
+            // 如果是歷史紀錄，使用傳入的 sessionData
+            // 如果是當前練習，構造一個臨時的 session 對象 (因為還沒存入 history 或者是剛存入)
+            // 其實 finishSession 已經存入 history 了，state.history[0] 就是最新的
+            // 但為了保險，我們直接使用 currentSessionLog 來構造當下的資料
+            
+            const targetSet = sessionData ? sessionData.set : state.currentSet;
+            const targetMode = sessionData ? sessionData.mode : state.activityType;
+            const targetScore = sessionData ? sessionData.score : state.score;
+            // 總題數邏輯：歷史紀錄有 questionCount 則用之，否則用總分/10，再否則重新計算
+            const targetTotalQ = sessionData ? (sessionData.questionCount || sessionData.totalQuestions / 10) : getSetData().length; 
+            const targetLogs = sessionData ? sessionData.logs : state.currentSessionLog;
+            const targetTimestamp = sessionData ? new Date(sessionData.timestamp).toLocaleString() : new Date().toLocaleString();
+
+            // 格式化詳情字串 (Spreadsheet Friendly Format)
+            const formattedDetails = targetLogs.map((log, i) => {
+                const resultIcon = log.isCorrect ? '⭕' : '❌';
+                let line = `${i+1}. ${resultIcon} ${log.question}`;
+                if (!log.isCorrect) {
+                    line += ` (誤: ${log.userAnswer} | 正: ${log.correctAnswer})`;
+                }
+                return line;
+            }).join('\n');
+
             const payload = {
                 studentName: state.studentName,
-                set: state.currentSet,
-                mode: state.activityType,
-                score: state.score,
-                totalQuestions: getSetData().length,
-                timestamp: new Date().toLocaleString(),
-                details: JSON.stringify(state.answersLog.map(a => `${a.question.substring(0, 10)}...(${a.isCorrect?'O':'X'})`))
+                set: targetSet,
+                mode: targetMode,
+                score: targetScore,
+                totalQuestions: targetTotalQ, // 傳送題數
+                timestamp: targetTimestamp,
+                details: formattedDetails // 傳送格式化後的字串
             };
 
             try {
@@ -326,10 +387,22 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-                updateState({ isSubmitting: false, submitStatus: 'success' });
+                
+                if(isHistoryUpload) {
+                    alert("歷史紀錄補上傳成功！");
+                    updateState({ isSubmitting: false });
+                } else {
+                    updateState({ isSubmitting: false, submitStatus: 'success' });
+                }
+                
             } catch (error) {
                 console.error(error);
-                updateState({ isSubmitting: false, submitStatus: 'error' });
+                if(isHistoryUpload) {
+                    alert("上傳失敗，請檢查網路。");
+                    updateState({ isSubmitting: false });
+                } else {
+                    updateState({ isSubmitting: false, submitStatus: 'error' });
+                }
             }
         }
 
@@ -337,7 +410,7 @@
 
         function render() {
             const app = document.getElementById('app');
-            app.innerHTML = ''; // 清空容器
+            app.innerHTML = ''; 
 
             switch (state.view) {
                 case 'home': app.appendChild(renderHome()); break;
@@ -345,94 +418,76 @@
                 case 'activities': app.appendChild(renderActivities()); break;
                 case 'practice': app.appendChild(renderPractice()); break;
                 case 'result': app.appendChild(renderResult()); break;
+                case 'history': app.appendChild(renderHistory()); break;
+                case 'history_detail': app.appendChild(renderHistoryDetail()); break;
                 default: app.appendChild(renderHome());
             }
         }
 
         function renderHome() {
             const div = document.createElement('div');
-            div.className = "flex flex-col items-center justify-center h-full flex-grow space-y-8 p-6 bg-gradient-to-b from-blue-100 to-blue-50";
+            div.className = "flex flex-col items-center justify-center h-full flex-grow space-y-8 p-6 bg-gradient-to-b from-pink-100 to-blue-50";
             div.innerHTML = `
-                <h1 class="text-5xl font-bold text-blue-600 tracking-wider mb-4 drop-shadow-sm text-center">成語探險家</h1>
-                <div class="text-xl text-gray-600 mb-8 text-center">國小五年級 - 互動練習平台</div>
-                <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md">
-                    <label class="block text-gray-700 font-bold mb-2">我是...</label>
-                    <input id="nameInput" type="text" placeholder="請輸入你的名字" class="w-full p-3 border-2 border-blue-200 rounded-xl text-lg focus:border-blue-500 focus:outline-none transition" value="${state.studentName}">
+                <div class="text-center space-y-2">
+                    <h1 class="text-4xl md:text-5xl font-black text-pink-600 tracking-wider drop-shadow-sm">陳以婷的<br>成語探險家</h1>
+                    <div class="text-xl text-gray-600 font-bold">國小五年級 - 專屬練習平台</div>
                 </div>
-                <button id="startBtn" class="px-10 py-4 bg-blue-500 hover:bg-blue-600 text-white text-2xl font-bold rounded-full shadow-lg transform transition hover:scale-105 flex items-center gap-2 btn-hover">
-                    開始冒險 ${Icons.ChevronRight}
-                </button>
-                <div class="mt-12 text-xs text-gray-400 w-full max-w-md">
+                <div class="bg-white p-6 rounded-3xl shadow-xl w-full max-w-md border-4 border-pink-200">
+                    <label class="block text-gray-500 font-bold mb-2 text-sm uppercase tracking-wide">挑戰者</label>
+                    <div class="w-full p-4 bg-gray-100 rounded-xl text-2xl font-black text-gray-700 text-center select-none">${state.studentName}</div>
+                </div>
+                <div class="flex flex-col gap-4 w-full max-w-md">
+                    <button onclick="updateState({view: 'sets'})" class="w-full px-8 py-5 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white text-2xl font-black rounded-2xl shadow-lg transform transition hover:scale-105 flex items-center justify-center gap-3 btn-hover">開始冒險 ${Icons.ChevronRight}</button>
+                    <button onclick="updateState({view: 'history'})" class="w-full px-8 py-4 bg-white text-pink-600 border-2 border-pink-200 hover:bg-pink-50 text-xl font-bold rounded-2xl shadow-sm transition flex items-center justify-center gap-2 btn-hover">${Icons.Clipboard} 查看我的作答記錄</button>
+                </div>
+                <div class="mt-8 text-xs text-gray-400 w-full max-w-md text-center">
                     <details>
-                        <summary>老師設定 (Google Sheet URL)</summary>
-                        <input id="urlInput" type="text" class="w-full p-2 border mt-2 rounded" placeholder="貼上 Apps Script 網址" value="${state.scriptUrl}">
+                        <summary>老師設定</summary>
+                        <input id="urlInput" type="text" class="w-full p-2 border mt-2 rounded" placeholder="Apps Script URL" value="${state.scriptUrl}">
                     </details>
                 </div>
             `;
-            
-            div.querySelector('#nameInput').addEventListener('input', (e) => state.studentName = e.target.value);
             div.querySelector('#urlInput').addEventListener('input', (e) => state.scriptUrl = e.target.value);
-            div.querySelector('#startBtn').addEventListener('click', handleStart);
-            
             return div;
         }
 
         function renderSets() {
             const div = document.createElement('div');
             div.className = "p-6 bg-blue-50 min-h-screen";
-            
-            // 定義關卡名稱與筆畫區間
             const setInfo = [
-                { num: 1, range: "1-2 畫" },
-                { num: 2, range: "3-4 畫" },
-                { num: 3, range: "5-6 畫" },
-                { num: 4, range: "7-8 畫" },
-                { num: 5, range: "9-10 畫" },
-                { num: 6, range: "11-12 畫" },
-                { num: 7, range: "13-14 畫" },
-                { num: 8, range: "15 畫及以上" }
+                { num: 1, range: "1-2 畫" }, { num: 2, range: "3-4 畫" }, { num: 3, range: "5-6 畫" }, { num: 4, range: "7-8 畫" },
+                { num: 5, range: "9-10 畫" }, { num: 6, range: "11-12 畫" }, { num: 7, range: "13-14 畫" }, { num: 8, range: "15 畫及以上" }
             ];
-
             let buttonsHtml = '';
             setInfo.forEach(info => {
                 buttonsHtml += `
-                    <button onclick="selectSet(${info.num})" class="h-40 bg-white rounded-2xl shadow-md hover:shadow-xl hover:bg-blue-50 transition border-b-4 border-blue-200 hover:border-blue-400 flex flex-col items-center justify-center gap-2 btn-hover">
-                        <span class="text-4xl font-black text-blue-300">0${info.num}</span>
+                    <button onclick="selectSet(${info.num})" class="h-40 bg-white rounded-2xl shadow-md hover:shadow-xl hover:bg-blue-50 transition border-b-4 border-blue-200 hover:border-blue-400 flex flex-col items-center justify-center gap-2 btn-hover group">
+                        <span class="text-4xl font-black text-blue-300 group-hover:text-blue-500 transition">0${info.num}</span>
                         <span class="text-xl font-bold text-gray-700">第 ${info.num} 關</span>
                         <span class="text-sm text-gray-500">適合筆畫: ${info.range}</span>
                     </button>
                 `;
             });
-
             div.innerHTML = `
-                <button onclick="updateState({view: 'home'})" class="mb-4 text-blue-500 font-bold flex items-center">← 回首頁</button>
+                <button onclick="updateState({view: 'home'})" class="mb-4 text-blue-500 font-bold flex items-center hover:bg-blue-100 px-4 py-2 rounded-lg transition">← 回首頁</button>
                 <h2 class="text-3xl font-bold text-center text-blue-800 mb-8">選擇挑戰關卡</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                    ${buttonsHtml}
-                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">${buttonsHtml}</div>
             `;
             return div;
         }
-
         window.selectSet = (setNum) => updateState({ currentSet: setNum, view: 'activities' });
-        window.updateState = updateState;
 
         function renderActivities() {
             const div = document.createElement('div');
             div.className = "p-6 bg-indigo-50 min-h-screen flex flex-col items-center";
-            
             const createCard = (icon, title, desc, color, type) => `
                 <button onclick="window.appStartPractice('${type}')" class="p-6 rounded-2xl border-b-4 text-left transition hover:-translate-y-1 hover:shadow-lg flex items-start gap-4 ${color} w-full btn-hover">
                     <div class="p-2 bg-white bg-opacity-50 rounded-lg text-gray-800">${icon}</div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-1">${title}</h3>
-                        <p class="text-sm opacity-90">${desc}</p>
-                    </div>
+                    <div><h3 class="text-xl font-bold mb-1">${title}</h3><p class="text-sm opacity-90">${desc}</p></div>
                 </button>
             `;
-
             div.innerHTML = `
-                <button onclick="updateState({view: 'sets'})" class="self-start mb-4 text-indigo-500 font-bold">← 回關卡選單</button>
+                <button onclick="updateState({view: 'sets'})" class="self-start mb-4 text-indigo-500 font-bold hover:bg-indigo-100 px-4 py-2 rounded-lg transition">← 回關卡選單</button>
                 <h2 class="text-3xl font-bold text-indigo-800 mb-2">第 ${state.currentSet} 關：選擇模式</h2>
                 <p class="text-gray-500 mb-8">準備好要挑戰什麼了嗎？</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl">
@@ -440,14 +495,11 @@
                     ${createCard(Icons.Star, "選出正確答案", "根據解釋，選出正確的成語。", "bg-yellow-100 text-yellow-700 border-yellow-300", 'quiz_meaning')}
                     ${createCard(Icons.ArrowLeftRight, "相似/相反詞挑戰", "這個成語跟誰意思相近或相反？", "bg-purple-100 text-purple-700 border-purple-300", 'quiz_synonym_antonym')}
                     ${createCard(Icons.Edit3, "靈活運用 (填空)", "讀例句，把適合的成語填進去。", "bg-pink-100 text-pink-700 border-pink-300", 'fill_blank')}
-                    <div class="col-span-1 md:col-span-2">
-                         ${createCard(Icons.Trophy, "綜合大測驗", "包含解釋、填空與相似相反詞題型！", "bg-blue-100 text-blue-700 border-blue-300", 'comprehensive')}
-                    </div>
+                    <div class="col-span-1 md:col-span-2">${createCard(Icons.Trophy, "綜合大測驗", "包含解釋、填空與相似相反詞題型！", "bg-blue-100 text-blue-700 border-blue-300", 'comprehensive')}</div>
                 </div>
             `;
             return div;
         }
-
         window.appStartPractice = startPractice;
 
         function renderPractice() {
@@ -455,177 +507,85 @@
             const questions = getSetData();
             const currentQ = questions[state.currentIndex];
 
-            // --- A. 學習模式 ---
             if (state.activityType === 'learn') {
                 div.className = "flex flex-col items-center justify-center min-h-screen bg-green-50 p-6";
                 div.innerHTML = `
-                    <div class="bg-white rounded-3xl shadow-xl p-8 max-w-2xl w-full text-center relative overflow-hidden animate-fade-in">
+                    <div class="bg-white rounded-3xl shadow-xl p-8 max-w-2xl w-full text-center relative overflow-hidden animate-fade-in border-b-8 border-green-200">
                         <div class="absolute top-0 left-0 w-full h-4 bg-green-400"></div>
                         <span class="text-gray-400 text-sm font-bold tracking-widest uppercase mb-2 block">Card ${state.currentIndex + 1} / ${questions.length}</span>
-                        
                         <h1 class="text-5xl md:text-6xl font-black text-gray-800 mb-4">${currentQ.word}</h1>
                         <div class="text-2xl md:text-3xl text-green-600 font-serif mb-8">${currentQ.zhuyin}</div>
-                        
-                        <div class="bg-green-50 rounded-xl p-6 mb-4 text-left">
-                            <h3 class="font-bold text-green-800 mb-2">【解釋】</h3>
-                            <p class="text-xl text-gray-700">${currentQ.meaning}</p>
-                        </div>
-
-                        <div class="bg-blue-50 rounded-xl p-6 text-left border-l-4 border-blue-400 mb-4">
-                            <h3 class="font-bold text-blue-800 mb-2">【例句】</h3>
-                            <p class="text-lg text-gray-700">${currentQ.example.replace('____', currentQ.word)}</p>
-                        </div>
-
+                        <div class="bg-green-50 rounded-xl p-6 mb-4 text-left"><h3 class="font-bold text-green-800 mb-2">【解釋】</h3><p class="text-xl text-gray-700">${currentQ.meaning}</p></div>
+                        <div class="bg-blue-50 rounded-xl p-6 text-left border-l-4 border-blue-400 mb-4"><h3 class="font-bold text-blue-800 mb-2">【例句】</h3><p class="text-lg text-gray-700">${currentQ.example.replace('____', currentQ.word)}</p></div>
                         <div class="grid grid-cols-2 gap-4 text-sm mb-8">
-                            <div class="bg-purple-50 p-2 rounded text-purple-800 text-left">
-                                <span class="font-bold">相似詞：</span>${currentQ.synonyms?.length > 0 ? currentQ.synonyms.join("、") : "無"}
-                            </div>
-                            <div class="bg-red-50 p-2 rounded text-red-800 text-left">
-                                <span class="font-bold">相反詞：</span>${currentQ.antonyms?.length > 0 ? currentQ.antonyms.join("、") : "無"}
-                            </div>
+                            <div class="bg-purple-50 p-2 rounded text-purple-800 text-left"><span class="font-bold">相似詞：</span>${currentQ.synonyms?.length > 0 ? currentQ.synonyms.join("、") : "無"}</div>
+                            <div class="bg-red-50 p-2 rounded text-red-800 text-left"><span class="font-bold">相反詞：</span>${currentQ.antonyms?.length > 0 ? currentQ.antonyms.join("、") : "無"}</div>
                         </div>
-
                         <div class="flex justify-between">
-                            <button id="prevBtn" class="px-6 py-2 rounded-lg bg-gray-200 text-gray-600 disabled:opacity-50" ${state.currentIndex === 0 ? 'disabled' : ''}>上一個</button>
-                            <button id="nextBtn" class="px-6 py-2 rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 btn-hover">
-                                ${state.currentIndex < questions.length - 1 ? '下一個' : '完成學習'}
-                            </button>
+                            <button id="prevBtn" class="px-6 py-2 rounded-lg bg-gray-200 text-gray-600 disabled:opacity-50 font-bold hover:bg-gray-300 transition" ${state.currentIndex === 0 ? 'disabled' : ''}>上一個</button>
+                            <button id="nextBtn" class="px-6 py-2 rounded-lg bg-green-500 text-white font-bold hover:bg-green-600 btn-hover transition">${state.currentIndex < questions.length - 1 ? '下一個' : '完成學習'}</button>
                         </div>
                     </div>
                 `;
-
                 div.querySelector('#prevBtn').onclick = () => updateState({ currentIndex: state.currentIndex - 1 });
                 div.querySelector('#nextBtn').onclick = () => {
-                    if (state.currentIndex < questions.length - 1) {
-                        updateState({ currentIndex: state.currentIndex + 1 });
-                    } else {
-                        updateState({ view: 'activities' });
-                    }
+                    if (state.currentIndex < questions.length - 1) updateState({ currentIndex: state.currentIndex + 1 });
+                    else updateState({ view: 'activities' });
                 };
                 return div;
             }
 
-            // --- B. 測驗模式 ---
             div.className = "flex flex-col items-center min-h-screen bg-yellow-50 p-4";
-
-            let questionText = "";
-            let options = [];
-            let correctAnswer = "";
-
-            // 隨機產生選項 (3個誘答 + 1個正確)
+            let questionText = "", options = [], correctAnswer = "";
             const generateOptions = (answer) => {
                 const distractors = getDistractors(answer, 3);
                 return [answer, ...distractors].sort(() => Math.random() - 0.5);
             };
 
-            // 題型邏輯
             if (state.activityType === 'quiz_meaning') {
                 questionText = `「${currentQ.meaning}」 是哪一個成語？`;
                 correctAnswer = currentQ.word;
                 options = generateOptions(correctAnswer);
-            } 
-            else if (state.activityType === 'fill_blank') {
+            } else if (state.activityType === 'fill_blank') {
                 questionText = currentQ.example;
                 correctAnswer = currentQ.word;
                 options = generateOptions(correctAnswer);
-            }
-            
-            // 處理相似/相反詞與綜合測驗的邏輯
-            const setupSynAnt = () => {
-                 const hasSyn = currentQ.synonyms && currentQ.synonyms.length > 0;
-                 const hasAnt = currentQ.antonyms && currentQ.antonyms.length > 0;
-                 let type = 'syn'; 
-                 if (hasSyn && hasAnt) type = Math.random() > 0.5 ? 'syn' : 'ant';
-                 else if (hasAnt) type = 'ant';
-                 else if (!hasSyn && !hasAnt) {
-                     // 若都沒資料，退回考解釋
-                     questionText = `「${currentQ.meaning}」 是哪一個成語？`;
-                     correctAnswer = currentQ.word;
-                     options = generateOptions(correctAnswer);
-                     return;
-                 }
-
-                 if (type === 'syn') {
-                     correctAnswer = currentQ.synonyms[0];
-                     questionText = `下列哪一個是「${currentQ.word}」的相似詞？`;
-                     options = generateOptions(correctAnswer);
-                 } else {
-                     correctAnswer = currentQ.antonyms[0];
-                     questionText = `下列哪一個是「${currentQ.word}」的相反詞？`;
-                     options = generateOptions(correctAnswer);
-                 }
-            };
-
-            if (state.activityType === 'quiz_synonym_antonym') {
-                setupSynAnt();
-            }
-            else if (state.activityType === 'comprehensive') {
-                const seed = (state.currentIndex + state.score) % 3;
-                if(seed === 0) {
-                    questionText = `「${currentQ.meaning}」 是哪一個成語？`;
-                    correctAnswer = currentQ.word;
+            } else {
+                const hasSyn = currentQ.synonyms?.length > 0;
+                const hasAnt = currentQ.antonyms?.length > 0;
+                let type = 'syn';
+                if (hasSyn && hasAnt) type = Math.random() > 0.5 ? 'syn' : 'ant';
+                else if (hasAnt) type = 'ant';
+                else if (!hasSyn && !hasAnt) { questionText = `「${currentQ.meaning}」 是哪一個成語？`; correctAnswer = currentQ.word; options = generateOptions(correctAnswer); }
+                
+                if (state.activityType === 'quiz_synonym_antonym' || (state.activityType === 'comprehensive' && (state.currentIndex + state.score) % 3 === 2)) {
+                    if (type === 'syn') { correctAnswer = currentQ.synonyms[0]; questionText = `下列哪一個是「${currentQ.word}」的相似詞？`; } 
+                    else { correctAnswer = currentQ.antonyms[0]; questionText = `下列哪一個是「${currentQ.word}」的相反詞？`; }
                     options = generateOptions(correctAnswer);
-                } else if (seed === 1) {
-                    questionText = currentQ.example;
-                    correctAnswer = currentQ.word;
+                } else if (state.activityType === 'comprehensive') {
+                    if ((state.currentIndex + state.score) % 3 === 0) { questionText = `「${currentQ.meaning}」 是哪一個成語？`; correctAnswer = currentQ.word; }
+                    else { questionText = currentQ.example; correctAnswer = currentQ.word; }
                     options = generateOptions(correctAnswer);
-                } else {
-                    setupSynAnt();
                 }
             }
 
-            // 渲染測驗介面
             const progress = ((state.currentIndex) / questions.length) * 100;
-            
             let feedbackOverlay = '';
             if (state.feedback === 'correct') {
-                feedbackOverlay = `
-                    <div class="absolute inset-0 bg-green-100 bg-opacity-95 rounded-2xl flex flex-col items-center justify-center z-10 animate-fade-in">
-                        <div class="text-green-500">${Icons.CheckCircle}</div>
-                        <span class="text-4xl font-black text-green-600 mt-4">答對了！</span>
-                    </div>`;
+                feedbackOverlay = `<div class="absolute inset-0 bg-green-100 bg-opacity-95 rounded-2xl flex flex-col items-center justify-center z-10 animate-fade-in backdrop-blur-sm"><div class="text-green-500 scale-110">${Icons.CheckCircle}</div><span class="text-4xl font-black text-green-600 mt-4">答對了！</span></div>`;
             } else if (state.feedback === 'wrong') {
-                feedbackOverlay = `
-                    <div class="absolute inset-0 bg-red-100 bg-opacity-95 rounded-2xl flex flex-col items-center justify-center z-10 animate-fade-in">
-                        <div class="text-red-500">${Icons.XCircle}</div>
-                        <span class="text-4xl font-black text-red-600 mt-4">再試一次！</span>
-                        <span class="text-xl text-red-800 mt-2">答案是：${correctAnswer}</span>
-                    </div>`;
+                feedbackOverlay = `<div class="absolute inset-0 bg-red-100 bg-opacity-95 rounded-2xl flex flex-col items-center justify-center z-10 animate-fade-in backdrop-blur-sm"><div class="text-red-500 scale-110">${Icons.XCircle}</div><span class="text-4xl font-black text-red-600 mt-4">再試一次！</span><div class="mt-4 p-4 bg-white rounded-xl shadow-lg"><span class="block text-gray-500 text-sm font-bold uppercase">正確答案</span><span class="text-2xl font-bold text-red-600">${correctAnswer}</span></div></div>`;
             }
 
-            let optionsHtml = options.map(opt => `
-                <button onclick="window.appHandleAnswer('${opt}', '${correctAnswer}', '${encodeURIComponent(JSON.stringify(currentQ))}', '${encodeURIComponent(questionText)}')" 
-                    class="p-4 rounded-xl border-2 border-gray-100 bg-gray-50 hover:bg-yellow-100 hover:border-yellow-300 text-xl font-bold text-gray-700 transition active:scale-95 btn-hover">
-                    ${opt}
-                </button>
-            `).join('');
+            let optionsHtml = options.map(opt => `<button onclick="window.appHandleAnswer('${opt}', '${correctAnswer}', '${encodeURIComponent(JSON.stringify(currentQ))}', '${encodeURIComponent(questionText)}')" class="p-4 rounded-xl border-2 border-gray-100 bg-white hover:bg-yellow-100 hover:border-yellow-300 text-xl font-bold text-gray-700 transition active:scale-95 btn-hover shadow-sm">${opt}</button>`).join('');
 
             div.innerHTML = `
-                <div class="w-full max-w-2xl h-4 bg-gray-200 rounded-full mb-6 overflow-hidden">
-                    <div class="h-full bg-yellow-400 transition-all duration-500 ease-out" style="width: ${progress}%"></div>
-                </div>
-
-                <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl w-full text-center relative min-h-[400px] flex flex-col justify-center">
-                    ${feedbackOverlay}
-                    <h2 class="text-lg text-gray-500 font-bold mb-6 flex items-center justify-center gap-2">
-                        題目 ${state.currentIndex + 1} / ${questions.length} 
-                        ${state.activityType === 'comprehensive' ? '<span class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">綜合挑戰</span>' : ''}
-                    </h2>
-                    
-                    <div class="text-2xl font-bold text-gray-800 mb-10 leading-relaxed min-h-[100px] flex items-center justify-center px-4">
-                        ${questionText}
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-                        ${optionsHtml}
-                    </div>
-                </div>
-                <div class="mt-8 text-xl font-bold text-yellow-600">目前分數：${state.score}</div>
+                <div class="w-full max-w-2xl h-4 bg-gray-200 rounded-full mb-6 overflow-hidden"><div class="h-full bg-yellow-400 transition-all duration-500 ease-out" style="width: ${progress}%"></div></div>
+                <div class="bg-white rounded-2xl shadow-xl p-8 max-w-2xl w-full text-center relative min-h-[400px] flex flex-col justify-center border-b-8 border-gray-100">${feedbackOverlay}<h2 class="text-lg text-gray-500 font-bold mb-6 flex items-center justify-center gap-2">題目 ${state.currentIndex + 1} / ${questions.length} ${state.activityType === 'comprehensive' ? '<span class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded">綜合挑戰</span>' : ''}</h2><div class="text-2xl font-bold text-gray-800 mb-10 leading-relaxed min-h-[100px] flex items-center justify-center px-4">${questionText}</div><div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">${optionsHtml}</div></div>
+                <div class="mt-8 text-xl font-bold text-yellow-600 bg-yellow-50 px-6 py-2 rounded-full">目前分數：${state.score}</div>
             `;
             return div;
         }
-
-        // Bridge for complex data passing in onclick
         window.appHandleAnswer = (sel, cor, qDataStr, qTextStr) => {
             const qData = JSON.parse(decodeURIComponent(qDataStr));
             const qText = decodeURIComponent(qTextStr);
@@ -635,47 +595,151 @@
         function renderResult() {
             const div = document.createElement('div');
             div.className = "flex flex-col items-center justify-center min-h-screen bg-purple-50 p-6";
-            
-            const submitBtnContent = state.isSubmitting 
-                ? `<span class="animate-spin mr-2">${Icons.Refresh}</span> 處理中...` 
-                : (state.submitStatus === 'success' ? `${Icons.CheckCircle} 成績已儲存` : `${Icons.Save} 儲存成績`);
-
-            const btnClass = state.submitStatus === 'success'
-                ? 'bg-green-500 text-white cursor-default'
-                : 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl';
+            const submitBtnContent = state.isSubmitting ? `<span class="animate-spin mr-2">${Icons.Refresh}</span> 處理中...` : (state.submitStatus === 'success' ? `${Icons.CheckCircle} 成績已上傳` : `${Icons.Save} 上傳成績給老師`);
+            const btnClass = state.submitStatus === 'success' ? 'bg-green-500 text-white cursor-default' : 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl';
 
             div.innerHTML = `
-                <div class="bg-white p-10 rounded-3xl shadow-2xl text-center max-w-lg w-full animate-fade-in">
+                <div class="bg-white p-10 rounded-3xl shadow-2xl text-center max-w-lg w-full animate-fade-in border-4 border-purple-100">
                     <div class="text-yellow-400 mx-auto w-20 mb-6">${Icons.Trophy}</div>
                     <h2 class="text-4xl font-black text-gray-800 mb-2">練習完成！</h2>
-                    <p class="text-xl text-gray-500 mb-8">${state.studentName}，你真棒！</p>
-                    
-                    <div class="bg-purple-100 rounded-xl p-6 mb-8">
-                        <span class="block text-sm text-purple-600 font-bold uppercase tracking-wider">Total Score</span>
-                        <span class="text-6xl font-black text-purple-700">${state.score}</span>
-                        <span class="text-purple-400 text-xl"> / ${getSetData().length * 10} 分</span>
-                    </div>
-
+                    <p class="text-xl text-gray-500 mb-8">${state.studentName}，做得好！</p>
+                    <div class="bg-purple-100 rounded-xl p-6 mb-8"><span class="block text-sm text-purple-600 font-bold uppercase tracking-wider">本局得分</span><span class="text-6xl font-black text-purple-700">${state.score}</span><span class="text-purple-400 text-xl"> / ${getSetData().length * 10} 分</span></div>
                     <div class="space-y-3">
-                        <button id="submitBtn" class="w-full py-4 rounded-xl font-bold text-xl flex items-center justify-center gap-2 transition ${btnClass}" ${state.submitStatus === 'success' ? 'disabled' : ''}>
-                            ${submitBtnContent}
-                        </button>
-
-                        <button onclick="updateState({view: 'sets'})" class="w-full py-4 rounded-xl font-bold text-xl text-gray-600 bg-gray-100 hover:bg-gray-200 transition">
-                            練習其他關卡
-                        </button>
+                        <button onclick="window.submitToGoogle()" id="submitBtn" class="w-full py-4 rounded-xl font-bold text-xl flex items-center justify-center gap-2 transition ${btnClass}" ${state.submitStatus === 'success' ? 'disabled' : ''}>${submitBtnContent}</button>
+                        <button onclick="updateState({view: 'history'})" class="w-full py-4 rounded-xl font-bold text-xl text-pink-600 bg-pink-50 hover:bg-pink-100 transition flex items-center justify-center gap-2">${Icons.Clipboard} 查看作答記錄</button>
+                        <button onclick="updateState({view: 'sets'})" class="w-full py-4 rounded-xl font-bold text-xl text-gray-600 bg-gray-100 hover:bg-gray-200 transition">練習其他關卡</button>
                     </div>
-                    ${state.submitStatus === 'error' ? '<p class="text-red-500 mt-2 text-sm">儲存失敗，請檢查網路或通知老師。</p>' : ''}
                 </div>
             `;
-            
-            div.querySelector('#submitBtn').onclick = submitToGoogle;
+            return div;
+        }
+        window.submitToGoogle = submitToGoogle;
+
+        function renderHistory() {
+            const div = document.createElement('div');
+            div.className = "p-6 bg-gray-50 min-h-screen";
+
+            if (!state.history || state.history.length === 0) {
+                 div.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-screen">
+                        <h2 class="text-2xl font-bold text-gray-400 mb-4">目前沒有紀錄</h2>
+                        <button onclick="updateState({view: 'home'})" class="px-6 py-2 bg-blue-500 text-white rounded-full">回首頁</button>
+                    </div>
+                 `;
+                 return div;
+            }
+
+            let cardsHtml = state.history.map(session => {
+                const date = new Date(session.timestamp);
+                const dateStr = `${date.getMonth()+1}/${date.getDate()} ${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`;
+                const modeName = getModeName(session.mode);
+                const colorClass = session.score === session.totalQuestions ? 'border-yellow-400 bg-yellow-50' : 'border-gray-200 bg-white';
+
+                return `
+                    <button onclick="window.showSessionDetail(${session.id})" class="text-left w-full p-4 rounded-2xl shadow-sm hover:shadow-md transition border-l-8 ${colorClass} flex flex-col justify-between h-32 relative group">
+                        <div class="flex justify-between items-start w-full">
+                            <div>
+                                <span class="text-xs font-bold text-gray-400 uppercase">${dateStr}</span>
+                                <div class="text-2xl font-black text-gray-800 group-hover:text-blue-600">第 ${session.set} 關</div>
+                                <div class="text-sm text-gray-500">${modeName}</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-3xl font-black ${session.score === session.totalQuestions ? 'text-yellow-600' : 'text-blue-600'}">${session.score}</div>
+                                <div class="text-xs text-gray-400">分</div>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition text-blue-400">${Icons.Eye}</div>
+                    </button>
+                `;
+            }).join('');
+
+            div.innerHTML = `
+                <div class="max-w-5xl mx-auto">
+                    <div class="flex justify-between items-center mb-8 sticky top-0 bg-gray-50 py-4 z-10">
+                        <button onclick="updateState({view: 'home'})" class="bg-white px-4 py-2 rounded-full shadow text-gray-600 font-bold hover:bg-gray-100">← 回首頁</button>
+                        <h2 class="text-2xl font-bold text-gray-800">我的冒險日誌</h2>
+                        <button onclick="clearHistory()" class="text-red-300 hover:text-red-500 p-2" title="清除所有紀錄">${Icons.Trash}</button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">${cardsHtml}</div>
+                </div>
+            `;
             return div;
         }
 
-        // --- 初始化 ---
-        render();
+        window.showSessionDetail = (id) => {
+            const session = state.history.find(s => s.id === id);
+            updateState({ selectedSession: session, view: 'history_detail' });
+        }
 
+        // --- History Detail View (包含補上傳功能) ---
+        function renderHistoryDetail() {
+            const session = state.selectedSession;
+            const div = document.createElement('div');
+            div.className = "flex flex-col items-center min-h-screen bg-gray-50 p-6";
+
+            if (!session) return renderHistory();
+
+            const date = new Date(session.timestamp);
+            const timeStr = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()} ${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`;
+
+            let listHtml = session.logs.map((log, index) => {
+                const isCorrect = log.isCorrect;
+                return `
+                    <div class="w-full max-w-2xl bg-white rounded-xl shadow-sm p-4 mb-3 border-l-4 ${isCorrect ? 'border-green-500' : 'border-red-500'} flex gap-4">
+                        <div class="mt-1 flex-shrink-0 ${isCorrect ? 'text-green-500' : 'text-red-500'}">
+                            ${isCorrect ? Icons.Check : Icons.X} 
+                        </div>
+                        <div class="flex-grow">
+                            <div class="font-bold text-gray-800 text-lg mb-2">${log.question}</div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm bg-gray-50 p-2 rounded-lg">
+                                <div><span class="text-gray-400 text-xs mr-2">你的答案</span><span class="${isCorrect ? 'text-green-700 font-bold' : 'text-red-500 line-through'}">${log.userAnswer}</span></div>
+                                ${!isCorrect ? `<div><span class="text-gray-400 text-xs mr-2">正確答案</span><span class="text-green-600 font-bold">${log.correctAnswer}</span></div>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // 將 session 物件轉為 JSON 字串，放入 onclick 中
+            const sessionJson = encodeURIComponent(JSON.stringify(session));
+
+            div.innerHTML = `
+                <div class="w-full max-w-2xl mb-6 flex items-center justify-between sticky top-0 bg-gray-50 py-4 z-10">
+                    <button onclick="updateState({view: 'history'})" class="text-gray-500 font-bold flex items-center hover:text-gray-700 bg-white px-4 py-2 rounded-full shadow-sm transition">← 返回列表</button>
+                    <h2 class="text-xl font-bold text-gray-800">第 ${session.set} 關詳情</h2>
+                    <div class="w-10"></div>
+                </div>
+
+                <div class="w-full max-w-2xl bg-white rounded-2xl shadow-md p-6 mb-6 border border-gray-100">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <div class="text-sm text-gray-500">${timeStr}</div>
+                            <div class="text-lg font-bold text-gray-800">${getModeName(session.mode)}</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm text-gray-500">得分</div>
+                            <div class="text-3xl font-black text-blue-600">${session.score} <span class="text-sm font-normal text-gray-400">/ ${session.totalQuestions}</span></div>
+                        </div>
+                    </div>
+                    <button onclick='window.uploadHistorySession("${sessionJson}")' class="w-full py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 font-bold flex items-center justify-center gap-2 transition text-sm">
+                        ${Icons.CloudUpload} 補上傳至 Google 試算表
+                    </button>
+                </div>
+
+                <div class="w-full max-w-2xl pb-10">
+                    ${listHtml}
+                </div>
+            `;
+            return div;
+        }
+
+        // Bridge function for uploading history
+        window.uploadHistorySession = (sessionStr) => {
+            const session = JSON.parse(decodeURIComponent(sessionStr));
+            submitToGoogle(session);
+        };
+
+        render();
     </script>
 </body>
 </html>
