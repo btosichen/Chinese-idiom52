@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陳以婷的成語探險家</title>
+    <title>陳以婷的成語探險家v0129</title>
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -62,11 +62,12 @@
             X: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`,
             Trash: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`,
             Eye: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
-            CloudUpload: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>`
+            CloudUpload: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/></svg>`,
+            Toggle: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="5" width="22" height="14" rx="7" ry="7"/><circle cx="16" cy="12" r="3"/></svg>`
         };
 
         // --- 2. 成語資料庫 ---
-        // (保持與前一版完全相同，包含 Set 1 ~ Set 8 的所有成語)
+        // Mapping: Set 9 是「5下成語」
         const idiomDatabase = [
           // --- Set 1 (1-2 畫) ---
           { set: 1, word: "一言為定", zhuyin: "ㄧ ㄧㄢˊ ㄨㄟˊ ㄉㄧㄥˋ", meaning: "說好就算數，不反悔。", example: "我們約好明天見，____，不見不散。", synonyms: ["一諾千金", "言而有信"], antonyms: ["出爾反爾", "食言而肥"] },
@@ -203,6 +204,28 @@
           { set: 8, word: "循序漸進", zhuyin: "ㄒㄩㄣˊ ㄒㄩˋ ㄐㄧㄢˋ ㄐㄧㄣˋ", meaning: "按步驟慢慢前進。", example: "學習要____，不能急於求成。", synonyms: ["按部就班"], antonyms: ["揠苗助長"] },
           { set: 8, word: "適得其所", zhuyin: "ㄕˋ ㄉㄜˊ ㄑㄧˊ ㄙㄨㄛˇ", meaning: "安排得很恰當。", example: "這筆捐款用在需要的人身上，真是____。", synonyms: ["恰如其分"], antonyms: [] },
           { set: 8, word: "興高采烈", zhuyin: "ㄒㄧㄥˋ ㄍㄠ ㄘㄞˇ ㄌㄧㄝˋ", meaning: "非常高興、情緒高昂。", example: "孩子們____地去校外教學。", synonyms: ["歡天喜地"], antonyms: ["愁眉苦臉"] },
+
+          // --- Set 9 (5下成語) ---
+          { set: 9, word: "揮灑自如", zhuyin: "ㄏㄨㄟ ㄙㄚˇ ㄗˋ ㄖㄨˊ", meaning: "隨意寫作詩文或書畫，不受拘束。", example: "小忠勤練毛筆字，寫起大字來____。", synonyms: ["得心應手"], antonyms: ["矯揉造作"] },
+          { set: 9, word: "懸壺濟世", zhuyin: "ㄒㄩㄢˊ ㄏㄨˊ ㄐㄧˋ ㄕˋ", meaning: "比喻行醫救人。", example: "我的爺爺是位醫師，____是他一生的志願。", synonyms: ["救死扶傷"], antonyms: ["草菅人命"] },
+          { set: 9, word: "魂不附體", zhuyin: "ㄏㄨㄣˊ ㄅㄨˋ ㄈㄨˋ ㄊㄧˇ", meaning: "形容驚嚇過度而心不能自主。", example: "那聲巨響把他嚇得____，半天說不出話。", synonyms: ["六神無主"], antonyms: ["神色自若"] },
+          { set: 9, word: "明眸皓齒", zhuyin: "ㄇㄧㄥˊ ㄇㄡˊ ㄏㄠˋ ㄔˇ", meaning: "形容女子容貌明麗。", example: "妹妹長得____，充滿靈氣的大眼睛好像會說話。", synonyms: ["眉清目秀"], antonyms: ["其貌不揚"] },
+          { set: 9, word: "戀戀不捨", zhuyin: "ㄌㄧㄢˋ ㄌㄧㄢˋ ㄅㄨˋ ㄕㄜˇ", meaning: "十分留戀，不忍離開。", example: "畢業典禮上，大家對校園____。", synonyms: ["依依不捨"], antonyms: ["揚長而去"] },
+          { set: 9, word: "飲水思源", zhuyin: "ㄧㄣˇ ㄕㄨㄟˇ ㄙ ㄩㄢˊ", meaning: "喝水時就想起水的源頭。比喻人不忘本。", example: "做人要____，不可忘恩負義。", synonyms: ["知恩圖報"], antonyms: ["過河拆橋"] },
+          { set: 9, word: "闔第光臨", zhuyin: "ㄏㄜˊ ㄉㄧˋ ㄍㄨㄤ ㄌㄧㄣˊ", meaning: "邀請客人全家到來的敬語。", example: "誠摯邀請您____我們的晚宴。", synonyms: ["攜眷參加"], antonyms: ["謝絕參觀"] },
+          { set: 9, word: "勝券在握", zhuyin: "ㄕㄥˋ ㄑㄩㄢˋ ㄗㄞˋ ㄨㄛˋ", meaning: "比喻很有把握，相信自己可以成功勝利。", example: "這次比賽他準備充分，早已____。", synonyms: ["十拿九穩"], antonyms: ["毫無把握"] },
+          { set: 9, word: "塵埃落定", zhuyin: "ㄔㄣˊ ㄞ ㄌㄨㄛˋ ㄉㄧㄥˋ", meaning: "比喻事情已成定局。", example: "等一切____，我們再來討論後續計畫。", synonyms: ["大勢已定"], antonyms: ["變幻莫測"] },
+          { set: 9, word: "心如刀割", zhuyin: "ㄒㄧㄣ ㄖㄨˊ ㄉㄠ ㄍㄜ", meaning: "心像被刀割一樣。比喻極度痛苦。", example: "看到流浪狗受傷的樣子，讓人____。", synonyms: ["痛徹心扉"], antonyms: ["欣喜若狂"] },
+          { set: 9, word: "韋編三絕", zhuyin: "ㄨㄟˊ ㄅㄧㄢ ㄙㄢ ㄐㄩㄝˊ", meaning: "比喻讀書勤奮努力。", example: "他讀書有____的精神，難怪成績這麼好。", synonyms: ["勤能補拙"], antonyms: ["不學無術"] },
+          { set: 9, word: "溫潤如玉", zhuyin: "ㄨㄣ ㄖㄨㄣˋ ㄖㄨˊ ㄩˋ", meaning: "如美玉般溫和柔潤且有光澤。", example: "他的個性____，非常好相處。", synonyms: ["溫文儒雅"], antonyms: ["暴躁如雷"] },
+          { set: 9, word: "摩肩接踵", zhuyin: "ㄇㄛˊ ㄐㄧㄢ ㄐㄧㄝ ㄓㄨㄥˇ", meaning: "肩接肩，腳碰腳。形容人多擁擠不堪。", example: "年貨大街上人潮____，非常熱鬧。", synonyms: ["人山人海"], antonyms: ["門可羅雀"] },
+          { set: 9, word: "發號施令", zhuyin: "ㄈㄚ ㄏㄠˋ ㄕ ㄌㄧㄥˋ", meaning: "發布指示、命令。", example: "隊長在場上____，指揮隊員進攻。", synonyms: ["指揮若定"], antonyms: ["聽命行事"] },
+          { set: 9, word: "引經據典", zhuyin: "ㄧㄣˇ ㄐㄧㄥ ㄐㄩˋ ㄉㄧㄢˇ", meaning: "形容引用經書典籍等為說話、寫作的依據。", example: "他寫文章喜歡____，展現深厚的學識。", synonyms: ["旁徵博引"], antonyms: ["信口開河"] },
+          { set: 9, word: "煥然一新", zhuyin: "ㄏㄨㄢˋ ㄖㄢˊ ㄧ ㄒㄧㄣ", meaning: "形容呈現出嶄新的面貌。", example: "經過整修，這棟老房子____。", synonyms: ["耳目一新"], antonyms: ["依然故我"] },
+          { set: 9, word: "蚍蜉撼樹", zhuyin: "ㄆㄧˊ ㄈㄨˊ ㄏㄢˋ ㄕㄨˋ", meaning: "比喻不自量力。", example: "他想挑戰世界冠軍，簡直是____。", synonyms: ["螳臂擋車"], antonyms: ["量力而為"] },
+          { set: 9, word: "臨渴掘井", zhuyin: "ㄌㄧㄣˊ ㄎㄜˇ ㄐㄩㄝˊ ㄐㄧㄥˇ", meaning: "比喻事到臨頭才想辦法。", example: "平時不準備，考試前才____是沒用的。", synonyms: ["措手不及"], antonyms: ["未雨綢繆"] },
+          { set: 9, word: "冠冕堂皇", zhuyin: "ㄍㄨㄢ ㄇㄧㄢˇ ㄊㄤˊ ㄏㄨㄤˊ", meaning: "形容表面莊嚴體面或理由正大的樣子。", example: "他的理由聽起來____，其實都是藉口。", synonyms: ["光明正大"], antonyms: ["鬼鬼祟祟"] },
+          { set: 9, word: "待價而沽", zhuyin: "ㄉㄞˋ ㄐㄧㄚˋ ㄦˊ ㄍㄨ", meaning: "比喻人等待機會，為世所用；或指商品等待好價錢出售。", example: "他有一身好本領，正____，等待伯樂出現。", synonyms: ["待時而動"], antonyms: ["賤價求售"] }
         ];
 
         // --- 3. 狀態與歷史紀錄 ---
@@ -249,6 +272,7 @@
                 'quiz_meaning': '選出正確答案',
                 'quiz_synonym_antonym': '相似/相反詞',
                 'fill_blank': '靈活運用',
+                'quiz_true_false': '是非大挑戰',
                 'comprehensive': '綜合大測驗'
             };
             return map[mode] || mode;
@@ -322,7 +346,7 @@
                 mode: state.activityType,
                 score: finalScore,
                 totalQuestions: totalQ * 10,
-                questionCount: totalQ, // Store count separately
+                questionCount: totalQ, 
                 logs: logs
             };
 
@@ -336,7 +360,6 @@
             });
         }
 
-        // 修改：統一的上傳邏輯，支援上傳歷史紀錄
         async function submitToGoogle(sessionData = null) {
             if (!state.scriptUrl) {
                 alert("請先設定 Google Apps Script 網址！");
@@ -344,23 +367,15 @@
             }
             updateState({ isSubmitting: true });
 
-            // 決定要上傳哪一份資料 (當前練習 or 歷史紀錄)
             const isHistoryUpload = !!sessionData;
-            
-            // 如果是歷史紀錄，使用傳入的 sessionData
-            // 如果是當前練習，構造一個臨時的 session 對象 (因為還沒存入 history 或者是剛存入)
-            // 其實 finishSession 已經存入 history 了，state.history[0] 就是最新的
-            // 但為了保險，我們直接使用 currentSessionLog 來構造當下的資料
             
             const targetSet = sessionData ? sessionData.set : state.currentSet;
             const targetMode = sessionData ? sessionData.mode : state.activityType;
             const targetScore = sessionData ? sessionData.score : state.score;
-            // 總題數邏輯：歷史紀錄有 questionCount 則用之，否則用總分/10，再否則重新計算
             const targetTotalQ = sessionData ? (sessionData.questionCount || sessionData.totalQuestions / 10) : getSetData().length; 
             const targetLogs = sessionData ? sessionData.logs : state.currentSessionLog;
             const targetTimestamp = sessionData ? new Date(sessionData.timestamp).toLocaleString() : new Date().toLocaleString();
 
-            // 格式化詳情字串 (Spreadsheet Friendly Format)
             const formattedDetails = targetLogs.map((log, i) => {
                 const resultIcon = log.isCorrect ? '⭕' : '❌';
                 let line = `${i+1}. ${resultIcon} ${log.question}`;
@@ -375,9 +390,9 @@
                 set: targetSet,
                 mode: targetMode,
                 score: targetScore,
-                totalQuestions: targetTotalQ, // 傳送題數
+                totalQuestions: targetTotalQ, 
                 timestamp: targetTimestamp,
-                details: formattedDetails // 傳送格式化後的字串
+                details: formattedDetails 
             };
 
             try {
@@ -458,6 +473,19 @@
                 { num: 1, range: "1-2 畫" }, { num: 2, range: "3-4 畫" }, { num: 3, range: "5-6 畫" }, { num: 4, range: "7-8 畫" },
                 { num: 5, range: "9-10 畫" }, { num: 6, range: "11-12 畫" }, { num: 7, range: "13-14 畫" }, { num: 8, range: "15 畫及以上" }
             ];
+            
+            // 特別製作的 5下成語按鈕
+            const specialSetBtn = `
+                <button onclick="selectSet(9)" class="col-span-2 md:col-span-4 h-40 bg-pink-100 rounded-2xl shadow-md hover:shadow-xl hover:bg-pink-200 transition border-b-4 border-pink-300 hover:border-pink-400 flex flex-col items-center justify-center gap-2 btn-hover group relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-pink-200 opacity-50 transform rotate-12 scale-150">
+                        ${Icons.Star}
+                    </div>
+                    <span class="text-3xl font-black text-pink-600 group-hover:scale-110 transition flex items-center gap-2">🏆 5下成語</span>
+                    <span class="text-lg font-bold text-gray-600">成語博物館精選</span>
+                    <span class="text-sm text-gray-500 bg-white bg-opacity-50 px-3 py-1 rounded-full">共 20 個挑戰</span>
+                </button>
+            `;
+
             let buttonsHtml = '';
             setInfo.forEach(info => {
                 buttonsHtml += `
@@ -471,7 +499,10 @@
             div.innerHTML = `
                 <button onclick="updateState({view: 'home'})" class="mb-4 text-blue-500 font-bold flex items-center hover:bg-blue-100 px-4 py-2 rounded-lg transition">← 回首頁</button>
                 <h2 class="text-3xl font-bold text-center text-blue-800 mb-8">選擇挑戰關卡</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">${buttonsHtml}</div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                    ${specialSetBtn}
+                    ${buttonsHtml}
+                </div>
             `;
             return div;
         }
@@ -480,22 +511,28 @@
         function renderActivities() {
             const div = document.createElement('div');
             div.className = "p-6 bg-indigo-50 min-h-screen flex flex-col items-center";
+            
+            const isSet9 = state.currentSet === 9;
+            const titleText = isSet9 ? "🏆 5下成語專區" : `第 ${state.currentSet} 關`;
+
             const createCard = (icon, title, desc, color, type) => `
                 <button onclick="window.appStartPractice('${type}')" class="p-6 rounded-2xl border-b-4 text-left transition hover:-translate-y-1 hover:shadow-lg flex items-start gap-4 ${color} w-full btn-hover">
                     <div class="p-2 bg-white bg-opacity-50 rounded-lg text-gray-800">${icon}</div>
                     <div><h3 class="text-xl font-bold mb-1">${title}</h3><p class="text-sm opacity-90">${desc}</p></div>
                 </button>
             `;
+            
             div.innerHTML = `
                 <button onclick="updateState({view: 'sets'})" class="self-start mb-4 text-indigo-500 font-bold hover:bg-indigo-100 px-4 py-2 rounded-lg transition">← 回關卡選單</button>
-                <h2 class="text-3xl font-bold text-indigo-800 mb-2">第 ${state.currentSet} 關：選擇模式</h2>
+                <h2 class="text-3xl font-bold text-indigo-800 mb-2">${titleText}：選擇模式</h2>
                 <p class="text-gray-500 mb-8">準備好要挑戰什麼了嗎？</p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl">
                     ${createCard(Icons.BookOpen, "成語解釋 (學習)", "先來認識這些成語的意思和注音吧！", "bg-green-100 text-green-700 border-green-300", 'learn')}
                     ${createCard(Icons.Star, "選出正確答案", "根據解釋，選出正確的成語。", "bg-yellow-100 text-yellow-700 border-yellow-300", 'quiz_meaning')}
                     ${createCard(Icons.ArrowLeftRight, "相似/相反詞挑戰", "這個成語跟誰意思相近或相反？", "bg-purple-100 text-purple-700 border-purple-300", 'quiz_synonym_antonym')}
                     ${createCard(Icons.Edit3, "靈活運用 (填空)", "讀例句，把適合的成語填進去。", "bg-pink-100 text-pink-700 border-pink-300", 'fill_blank')}
-                    <div class="col-span-1 md:col-span-2">${createCard(Icons.Trophy, "綜合大測驗", "包含解釋、填空與相似相反詞題型！", "bg-blue-100 text-blue-700 border-blue-300", 'comprehensive')}</div>
+                    <div class="col-span-1 md:col-span-2">${createCard(Icons.Toggle, "⭕❌ 是非大挑戰", "判斷解釋或例句是否正確！", "bg-orange-100 text-orange-700 border-orange-300", 'quiz_true_false')}</div>
+                    <div class="col-span-1 md:col-span-2">${createCard(Icons.Trophy, "綜合大測驗", "包含解釋、填空、是非與相似相反詞！", "bg-blue-100 text-blue-700 border-blue-300", 'comprehensive')}</div>
                 </div>
             `;
             return div;
@@ -542,29 +579,72 @@
                 return [answer, ...distractors].sort(() => Math.random() - 0.5);
             };
 
-            if (state.activityType === 'quiz_meaning') {
+            // Logic Switch
+            const mode = state.activityType;
+            // For comprehensive, rotate modes
+            let effectiveMode = mode;
+            if (mode === 'comprehensive') {
+                const seed = (state.currentIndex + state.score) % 4; // 0:meaning, 1:fill, 2:syn/ant, 3:true/false
+                if(seed === 0) effectiveMode = 'quiz_meaning';
+                else if(seed === 1) effectiveMode = 'fill_blank';
+                else if(seed === 2) effectiveMode = 'quiz_synonym_antonym';
+                else effectiveMode = 'quiz_true_false';
+            }
+
+            if (effectiveMode === 'quiz_meaning') {
                 questionText = `「${currentQ.meaning}」 是哪一個成語？`;
                 correctAnswer = currentQ.word;
                 options = generateOptions(correctAnswer);
-            } else if (state.activityType === 'fill_blank') {
+            } else if (effectiveMode === 'fill_blank') {
                 questionText = currentQ.example;
                 correctAnswer = currentQ.word;
                 options = generateOptions(correctAnswer);
-            } else {
+            } else if (effectiveMode === 'quiz_true_false') {
+                // True/False Logic
+                const isTrue = Math.random() > 0.5;
+                const distractor = getDistractors(currentQ.word, 1)[0];
+                // Find distractor data
+                const distractorData = idiomDatabase.find(d => d.word === distractor) || questions[0];
+                
+                // Randomly test meaning or example
+                const testMeaning = Math.random() > 0.5;
+                
+                if (testMeaning) {
+                    const displayedMeaning = isTrue ? currentQ.meaning : distractorData.meaning;
+                    questionText = `成語「${currentQ.word}」的意思是：<br><br>${displayedMeaning}<br><br>請問對不對？`;
+                } else {
+                    // Test Example
+                    // For example test, we show the sentence and ask if the idiom fits
+                    let sentence = isTrue ? currentQ.example : distractorData.example;
+                    // Replace the blank or the idiom itself with ____
+                    sentence = sentence.replace(isTrue ? currentQ.word : distractorData.word, '____');
+                    questionText = `例句填空：<br><br>${sentence}<br><br>填入「${currentQ.word}」正確嗎？`;
+                }
+                
+                correctAnswer = isTrue ? "⭕ 是" : "❌ 否";
+                options = ["⭕ 是", "❌ 否"];
+
+            } else { // Syn/Ant
                 const hasSyn = currentQ.synonyms?.length > 0;
                 const hasAnt = currentQ.antonyms?.length > 0;
                 let type = 'syn';
                 if (hasSyn && hasAnt) type = Math.random() > 0.5 ? 'syn' : 'ant';
                 else if (hasAnt) type = 'ant';
-                else if (!hasSyn && !hasAnt) { questionText = `「${currentQ.meaning}」 是哪一個成語？`; correctAnswer = currentQ.word; options = generateOptions(correctAnswer); }
+                else if (!hasSyn && !hasAnt) { // Fallback to meaning if no synonyms
+                    questionText = `「${currentQ.meaning}」 是哪一個成語？`; 
+                    correctAnswer = currentQ.word; 
+                    options = generateOptions(correctAnswer); 
+                }
                 
-                if (state.activityType === 'quiz_synonym_antonym' || (state.activityType === 'comprehensive' && (state.currentIndex + state.score) % 3 === 2)) {
-                    if (type === 'syn') { correctAnswer = currentQ.synonyms[0]; questionText = `下列哪一個是「${currentQ.word}」的相似詞？`; } 
-                    else { correctAnswer = currentQ.antonyms[0]; questionText = `下列哪一個是「${currentQ.word}」的相反詞？`; }
-                    options = generateOptions(correctAnswer);
-                } else if (state.activityType === 'comprehensive') {
-                    if ((state.currentIndex + state.score) % 3 === 0) { questionText = `「${currentQ.meaning}」 是哪一個成語？`; correctAnswer = currentQ.word; }
-                    else { questionText = currentQ.example; correctAnswer = currentQ.word; }
+                // If we didn't fallback
+                if (questionText === "") {
+                    if (type === 'syn') { 
+                        correctAnswer = currentQ.synonyms[0]; 
+                        questionText = `下列哪一個是「${currentQ.word}」的相似詞？`; 
+                    } else { 
+                        correctAnswer = currentQ.antonyms[0]; 
+                        questionText = `下列哪一個是「${currentQ.word}」的相反詞？`; 
+                    }
                     options = generateOptions(correctAnswer);
                 }
             }
@@ -634,13 +714,16 @@
                 const dateStr = `${date.getMonth()+1}/${date.getDate()} ${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`;
                 const modeName = getModeName(session.mode);
                 const colorClass = session.score === session.totalQuestions ? 'border-yellow-400 bg-yellow-50' : 'border-gray-200 bg-white';
+                
+                // Check if set is 9 (5下) for label
+                const setTitle = session.set === 9 ? '🏆 5下成語' : `第 ${session.set} 關`;
 
                 return `
                     <button onclick="window.showSessionDetail(${session.id})" class="text-left w-full p-4 rounded-2xl shadow-sm hover:shadow-md transition border-l-8 ${colorClass} flex flex-col justify-between h-32 relative group">
                         <div class="flex justify-between items-start w-full">
                             <div>
                                 <span class="text-xs font-bold text-gray-400 uppercase">${dateStr}</span>
-                                <div class="text-2xl font-black text-gray-800 group-hover:text-blue-600">第 ${session.set} 關</div>
+                                <div class="text-2xl font-black text-gray-800 group-hover:text-blue-600">${setTitle}</div>
                                 <div class="text-sm text-gray-500">${modeName}</div>
                             </div>
                             <div class="text-right">
@@ -681,6 +764,7 @@
 
             const date = new Date(session.timestamp);
             const timeStr = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()} ${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`;
+            const setTitle = session.set === 9 ? '5下成語' : `第 ${session.set} 關`;
 
             let listHtml = session.logs.map((log, index) => {
                 const isCorrect = log.isCorrect;
@@ -706,7 +790,7 @@
             div.innerHTML = `
                 <div class="w-full max-w-2xl mb-6 flex items-center justify-between sticky top-0 bg-gray-50 py-4 z-10">
                     <button onclick="updateState({view: 'history'})" class="text-gray-500 font-bold flex items-center hover:text-gray-700 bg-white px-4 py-2 rounded-full shadow-sm transition">← 返回列表</button>
-                    <h2 class="text-xl font-bold text-gray-800">第 ${session.set} 關詳情</h2>
+                    <h2 class="text-xl font-bold text-gray-800">${setTitle} 詳情</h2>
                     <div class="w-10"></div>
                 </div>
 
